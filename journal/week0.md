@@ -19,6 +19,14 @@
 
 ## TODO
 - Set up Budget, SNS topic, Budget alarm by AWS CLI
+- Homework challenge
++ EventBridge to retrieve aws health service status via SNS topic (free tier 1000 notification) https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html#creating-event-bridge-events-rule-for-aws-health
++ To review questions from AWS WAT 
++ To review the bootcamp tech stack and open ticket to request new quota by URL or by CLI
+https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html
+https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html
+https://docs.aws.amazon.com/general/latest/gr/audit-manager.html
+
 
 ## References:
 - How to check perdefinde permissions https://docs.aws.amazon.com/singlesignon/latest/userguide/permissionsetpredefined.html

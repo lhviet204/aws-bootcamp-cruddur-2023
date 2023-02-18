@@ -23,9 +23,12 @@
 3. Reviewed the tech stack and decided to reqeust new quota for maximum build project at current region for 5100 (max limit is 5000) via Service Quota console with ARN "arn:aws:servicequotas:us-east-1::codebuild/L-ACCF6C0D"
 
 
-![Conceptual Design](assets/Week00-conceptual.png)
+![Conceptual Design](/assets/Week00-conceptual.png)
+
 [Lucid Charts Share Link](https://lucid.app/lucidchart/bbf251e4-c2f0-427d-818d-7a5032d40095/edit?viewport_loc=-123%2C129%2C2416%2C1352%2C0_0&invitationId=inv_9e0a1590-6a7c-4d64-acb5-11f7a1a38b30)
-![Logical Desgin](assets/Week00-logical - Logical.png)
+
+![Logical Desgin](/assets/Week00-logical - Logical.png)
+
 [Lucid Charts Share Link](https://lucid.app/lucidchart/f9b47b43-74ab-4694-8841-7c65d00edba7/edit?viewport_loc=-724%2C-111%2C3624%2C2028%2C0_0&invitationId=inv_76438d19-a3c6-4931-bb03-b83f444b50b1)
 ## TODO
 - Acomplished 

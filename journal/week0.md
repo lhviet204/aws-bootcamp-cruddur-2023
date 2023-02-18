@@ -31,6 +31,9 @@
 ![Logical Desgin](assets/Week00-logical.png)
 
 [Lucid Charts Share Link](https://lucid.app/lucidchart/f9b47b43-74ab-4694-8841-7c65d00edba7/edit?viewport_loc=-724%2C-111%2C3624%2C2028%2C0_0&invitationId=inv_76438d19-a3c6-4931-bb03-b83f444b50b1)
+
+![Logical CI/CD Desgin](assets/Week00-logical-cicd.png)
+
 ## TODO
 - Acomplished 
 

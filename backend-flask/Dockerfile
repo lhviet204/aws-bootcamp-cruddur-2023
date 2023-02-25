@@ -22,6 +22,7 @@ COPY external_flask.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/external_flask.sh
 
 ENV FLASK_ENV=development
+ENV PATH=/root/.local/bin:$PATH
 
 EXPOSE ${PORT}
 

@@ -7,7 +7,10 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
+COPY external_flask.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/external_flask.sh
+
 ENV FLASK_ENV=development
 
 EXPOSE ${PORT}
-CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0", "--port=4567"]
+CMD ["sh", "-c", "/usr/local/bin/external_flask.sh"]

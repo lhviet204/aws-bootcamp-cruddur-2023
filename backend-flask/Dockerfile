@@ -1,5 +1,5 @@
 # Stage 1: Prepare the app source code
-FROM python:3.10-slim-buster as builder
+FROM python:3.10-slim-buster AS builder
 
 WORKDIR /backend-flask
 
@@ -13,17 +13,17 @@ FROM python:3.10-slim-buster
 
 WORKDIR /backend-flask
 
+RUN apt-get update && apt-get install -y --no-install-recommends curl \
+  && rm -rf /var/lib/apt/lists/* 
+
 COPY --from=builder /root/.local /root/.local
-RUN apt-get update && apt-get install -y \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+ENV PATH=/root/.local/bin:$PATH
 
 COPY external_flask.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/external_flask.sh
 
 ENV FLASK_ENV=development
-ENV PATH=/root/.local/bin:$PATH
 
 EXPOSE ${PORT}
 
-CMD ["sh","-c","/usr/local/bin/external_flask.sh"]
+CMD ["/usr/local/bin/external_flask.sh"]

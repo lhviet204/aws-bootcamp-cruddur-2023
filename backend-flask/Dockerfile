@@ -13,4 +13,4 @@ RUN chmod +x /usr/local/bin/external_flask.sh
 ENV FLASK_ENV=development
 
 EXPOSE ${PORT}
-CMD ["/usr/local/bin/external_flask.sh"]
+CMD ["sh","-c","/usr/local/bin/external_flask.sh"]

@@ -2,7 +2,7 @@
 - [Summary](#summary)
 
 - [Homework](#homework)
-  + [Containerize Backend and Frontend]#containerize-backend-and-frontend-application)
+  + [Containerize Backend and Frontend](#containerize-backend-and-frontend-application)
   + [Document the OpenAPI definitions](#document-the-openapi-definition)
   + [Updating the backend and frontend code to add notifications functionality](#write-the-backend-and-frontend-code-to-add-notification-functionality)
   + [DB part - DynamoDB and Postgres](#db-part---dynamodb-and-postgres)

@@ -81,5 +81,5 @@ Ref links:
 
 ## Try Harder
 Challenges I couldn't get them done.
-- Get the container running out of the GitPod, I accidently upgraded the current version of Docker Desktop, I will find the storage for upgrading on my laptop. (silly)[assets/week1/silly_things.png]
+- Get the container running out of the GitPod, I accidently upgraded the current version of Docker Desktop, I will find the storage for upgrading on my laptop. [silly](assets/week1/silly_things.png)
 - Running the containers on EC2 free tier.

@@ -8,7 +8,6 @@
   + [DB part - DynamoDB and Postgres](#DB-part---DynamoDB-and-Postgres)
 
 - [Homework Challenges](#homework-challenges)
-  + [def](#def)
   + [Run the dockerfile CMD as an external script](#)
   + [Push and tag a image to DockerHub](#)
   + [Use multi-stage building for a Dockerfile build](#) 

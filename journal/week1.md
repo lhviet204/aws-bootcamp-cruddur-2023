@@ -1,19 +1,19 @@
 # Week 01 — App Containerization
-- [Summary](#Summary)
+- [Summary](#summary)
 
-- [Homework](#Homework)
-  + [Containerize Backend and Frontend](#containerize-backend-and-frontend)
-  + [Document the OpenAPI definitions](#updating-the-openapi-definitions)
-  + [Updating the backend and frontend code to add notifications functionality](#updating-the-backend-and-frontend-code-to-add-notifications-functionality)
-  + [DB part - DynamoDB and Postgres](#DB-part---DynamoDB-and-Postgres)
+- [Homework](#homework)
+  + [Containerize Backend and Frontend]#containerize-backend-and-frontend-application)
+  + [Document the OpenAPI definitions](#document-the-openapi-definition)
+  + [Updating the backend and frontend code to add notifications functionality](#write-the-backend-and-frontend-code-to-add-notification-functionality)
+  + [DB part - DynamoDB and Postgres](#db-part---dynamodb-and-postgres)
 
 - [Homework Challenges](#homework-challenges)
-  + [Run the dockerfile CMD as an external script](#)
-  + [Push and tag a image to DockerHub](#)
-  + [Use multi-stage building for a Dockerfile build](#) 
-  + [Implement a healthcheck in the V3 Docker compose file](#)
+  + [Run the dockerfile CMD as an external script](#run-the-dockerfile-cmd-as-an-external-script)
+  + [Push and tag a image to DockerHub](#push-and-tag-a-image-to-dockerhub-they-have-a-free-tier)
+  + [Use multi-stage building for a Dockerfile build](#use-multi-stage-building-for-a-dockerfile-build) 
+  + [Implement a healthcheck in the V3 Docker compose file](#implement-a-healthcheck-in-the-v3-docker-compose-file)
 
-- [Try harder](#try-harder)
+- [Try harder for unfinished challenges](#try-harder)
   + [get the same containers running outside of Gitpod / Codespaces](#)
   + [Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes](#)
 

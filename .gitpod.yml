@@ -24,8 +24,20 @@ tasks:
       cd $THEIA_WORKSPACE_ROOT/backend-flask
       pip install -r requirements.text
       cd $THEIA_WORKSPACE_ROOT
-               
+
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
     - cweijan.vscode-postgresql-client2
+
+ports:
+  - name: frontend
+    port: 3000
+    onOpen: open-browser
+    visibility: public
+  - name: backend
+    port: 4567
+    visibility: public
+  - name: xray-daemon
+    port: 2000
+    visibility: public

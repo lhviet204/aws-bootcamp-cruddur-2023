@@ -21,6 +21,7 @@ services:
   frontend-react-js:
     environment:
       REACT_APP_BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      REACT_APP_OTLP_COLLECTOR_URL: "https://4318-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}/v1/traces"
       OTEL_EXPORTER_OTLP_ENDPOINT: "https://api.honeycomb.io/"
       OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=${HONEYCOMB_API_KEY}"
       OTEL_SERVICE_NAME: "cruddur-fe-react"         
@@ -43,6 +44,7 @@ services:
   otel-collector:
     environment:
       FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      HONEYCOMB_API_KEY: "${HONEYCOMB_API_KEY}"
     image: otel/opentelemetry-collector
     command: [--config=/etc/otel-collector-config.yaml]
     volumes:

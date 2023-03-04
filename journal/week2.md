@@ -26,11 +26,25 @@ By doing that, two steps are required :
 - Establish collector, there is example on how to use Docker Collector, since we learn about Docker compose we will apply docker compose.
 - Set up instrument for FE application
 
+#### Establish collector
 Following from honeycomb docs, the Collector consists of three components: receivers, processors, and exporters, which are then used to construct telemetry pipelines. All the components will be declared in file named "otel-collector-config.yaml" which we will mount to the docker for Collector.
+
+
+#### Set up instrumentation
 
 ## References
 - https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/#opentelemetry-in-the-browser
 
 - https://docs.honeycomb.io/getting-data-in/otel-collector/
+
+https://github.com/open-telemetry/opentelemetry-collector/blob/main/config/configtls/README.md
+
+https://github.com/open-telemetry/opentelemetry-collector/blob/main/config/configtls/README.md
+
+https://opentelemetry.io/docs/instrumentation/js/exporters/
+
+https://docs.honeycomb.io/getting-data-in/otel-collector/#cors-errors
+
+https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/
 
 ## Try Harder

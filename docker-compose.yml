@@ -38,7 +38,17 @@ services:
   #   ports:
   #     - "5432:5432"
   #   volumes:
-  #     - db:/var/lib/postgresql/data  
+  #     - db:/var/lib/postgresql/data
+  # Collector
+  otel-collector:
+    environment:
+      FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+    image: otel/opentelemetry-collector
+    command: [--config=/etc/otel-collector-config.yaml]
+    volumes:
+      - ./components/otel/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - 4138:4318 # OTLP http collector
 
 volumes:
   db:

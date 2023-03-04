@@ -1,0 +1,26 @@
+https://github.com/open-telemetry/opentelemetry-collector/blob/main/config/confighttp/README.md
+receivers:
+  otlp:
+    protocols:
+      http: # port 4318
+        include_metadata: true
+        cors:
+          allowed_origins:
+            - ${env:HTTP_FRONTEND_URL}
+        endpoint: 0.0.0.0:4318
+
+processors:
+  batch:
+
+exporters:
+  otlp:
+    endpoint: "api.honeycomb.io:443"
+    headers:
+      "x-honeycomb-team": ${env:HONEYCOMB_API_KEY}
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp]

@@ -31,6 +31,9 @@ vscode:
     - cweijan.vscode-postgresql-client2
 
 ports:
+  - name: collector
+    port: 4318
+    visibility: public
   - name: frontend
     port: 3000
     onOpen: open-browser

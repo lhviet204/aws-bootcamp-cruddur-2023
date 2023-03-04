@@ -6,7 +6,15 @@
 ## Summary
 ## Homework
 ## Homework Challenges
-There are two ways to monitor FE and BE
-- establish trace for FE
-- find a way to propogate between FE and BE ?
+There are two ways to implement monitor for traces between FE and BE
+- Establish trace for FE, however there is not easy way to send trace driectly from enduser browsers to HONEYCOMB, you can technically do that with new only API key with "Send Event" permission only.
+
+So, there is only way to implement so-called collector to collect traces from all end-user browsers before sending to HoneyComb.
+
+
+## References
+- https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/#opentelemetry-in-the-browser
+
+- https://docs.honeycomb.io/getting-data-in/otel-collector/
+
 ## Try Harder

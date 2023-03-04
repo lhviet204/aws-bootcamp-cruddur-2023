@@ -5,7 +5,7 @@ receivers:
         include_metadata: true
         cors:
           allowed_origins:
-            - ${env:HTTP_FRONTEND_URL}
+            - ${env:FRONTEND_URL}
         endpoint: 0.0.0.0:4318
 
 processors:

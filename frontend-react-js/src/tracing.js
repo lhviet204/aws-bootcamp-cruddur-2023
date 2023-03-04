@@ -27,27 +27,27 @@ registerInstrumentations({
     instrumentations: [
       new XMLHttpRequestInstrumentation({
         propagateTraceHeaderCorsUrls: [
-            new RegExp(`${process.env.REACT_APP_BACKEND_URL}`, 'g')
+            new RegExp(process.env.REACT_APP_BACKEND_URL, 'g')
         ]
       }),
       new FetchInstrumentation({
         propagateTraceHeaderCorsUrls: [
-            new RegExp(`${process.env.REACT_APP_BACKEND_URL}`, 'g')
+            new RegExp(process.env.REACT_APP_BACKEND_URL, 'g')
         ]
       }),
-      getWebAutoInstrumentations({
-        // load custom configuration for xml-http-request instrumentation
-        '@opentelemetry/instrumentation-xml-http-request': {
-          propagateTraceHeaderCorsUrls: [
-            new RegExp(`${process.env.REACT_APP_BACKEND_URL}`, 'g')
-            ],
-        },
-        '@opentelemetry/instrumentation-fetch': {
-          propagateTraceHeaderCorsUrls: [
-            new RegExp(`${process.env.REACT_APP_BACKEND_URL}`, 'g')
-            ],
-        },
-      }),
+      // getWebAutoInstrumentations({
+      //   // load custom configuration for xml-http-request instrumentation
+      //   '@opentelemetry/instrumentation-xml-http-request': {
+      //     propagateTraceHeaderCorsUrls: [
+      //       new RegExp(process.env.REACT_APP_BACKEND_URL, 'g')
+      //       ],
+      //   },
+      //   '@opentelemetry/instrumentation-fetch': {
+      //     propagateTraceHeaderCorsUrls: [
+      //       new RegExp(process.env.REACT_APP_BACKEND_URL, 'g')
+      //       ],
+      //   },
+      // }),
     ],
   });
   

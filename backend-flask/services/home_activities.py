@@ -46,7 +46,7 @@ class HomeActivities:
         'expires_at': (now + timedelta(hours=12)).isoformat(),
         'likes': 0,
         'replies': []
-      }
+      },
       {
         'uuid': '5539f031-89c4-4efe-b065-0497210eda21',
         'handle':  'Viet',

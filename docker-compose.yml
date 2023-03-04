@@ -21,10 +21,7 @@ services:
   frontend-react-js:
     environment:
       REACT_APP_BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
-      REACT_APP_OTLP_COLLECTOR_URL: "https://4318-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}/v1/traces"
-      OTEL_EXPORTER_OTLP_ENDPOINT: "https://api.honeycomb.io/"
-      OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=${HONEYCOMB_API_KEY}"
-      OTEL_SERVICE_NAME: "cruddur-fe-react"         
+      REACT_APP_OTLP_COLLECTOR_URL: "https://4318-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}/v1/traces"    
     build: ./frontend-react-js
     ports: 
       - "3000:3000"
@@ -50,7 +47,7 @@ services:
     volumes:
       - ./components/otel/otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
-      - 4138:4318 # OTLP http collector
+      - 4318:4318 # OTLP http collector
 
 volumes:
   db:

@@ -31,6 +31,10 @@ Following from honeycomb docs, the Collector consists of three components: recei
 
 
 #### Set up instrumentation
+- Prepare the library from OT, and ensure it's included in package.json
+- Prepare the tracing.js plus auto-propogate between FE and BE
+- Add import 'tracing.js' on the index.js
+- Input the local env for docker compose, OTEL collector yaml, and tracing.js
 
 ## References
 - https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/#opentelemetry-in-the-browser

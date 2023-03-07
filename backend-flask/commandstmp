@@ -3,3 +3,18 @@ gp env HONEYCOMB_API_KEY=""
 
 export ROLLBAR_ACCESS_TOKEN=""
 gp env ROLLBAR_ACCESS_TOKEN=""
+
+###
+AWS part config on AWS CLI
+export AWS_REGION="us-east-1"
+gp env AWS_REGION="us-east-1"
+
+to create IAM role for this xray
+to import key/secrets into console of gitpod
+
+aws xray create-group --group-name "Cruddur" --filter-expression "service(\"cruddur-be-flask\")
+
+aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
+
+EPOCH=$(date +%s)
+aws xray get-service-graph --start-time $(($EPOCH-600)) --end-time $EPOCH

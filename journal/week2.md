@@ -21,11 +21,11 @@ Integrate Rollbar and capture and error
 ### <strong>Integrate Rollbar and capture and error
 I did create new Rollbar project with friendly name insated of default one, and intergrate the traces with Rollbar with some traces on new UI
 
+- Commit [610c632](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/commit/610c6321091db2302047d4da60bcc706d9372e2a)
+
 ![](./assets/week2/Traces-in-rollbar-ui.png)
 
 ![](./assets/week2/Details-traces-from-rollbar-test-endpoint.png)
-
-
 
 
 ## Homework Challenges

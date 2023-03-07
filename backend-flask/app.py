@@ -10,7 +10,6 @@ from time import strftime
 from flask import got_request_exception
 
 # XRAY libs
-
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 

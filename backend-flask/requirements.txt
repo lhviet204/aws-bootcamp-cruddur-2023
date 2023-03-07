@@ -1,7 +1,7 @@
 flask
 flask-cors
 
-aws-xrays-sdk
+aws-xray-sdk
 rollbar
 blinker
 

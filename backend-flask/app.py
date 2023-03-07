@@ -9,6 +9,11 @@ from flask import got_request_exception
 from time import strftime
 from flask import got_request_exception
 
+# XRAY libs
+
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+
 from services.home_activities import *
 from services.notifications_activities import *
 from services.user_activities import *
@@ -29,6 +34,8 @@ from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProcessor
 
+
+
 # Initialize tracing and an exporter that can send data to Honeycomb
 provider = TracerProvider()
 processor = BatchSpanProcessor(OTLPSpanExporter())
@@ -44,6 +51,12 @@ provider.add_span_processor(simple_processor)
 app = Flask(__name__)
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
+
+# Initialize XRAY
+xray_url = os.getenv("AWS_XRAY_URL")
+xray_recorder.configure(service='cruddur-be-flask', dynamic_naming=xray_url)
+XRayMiddleware(app, xray_recorder)
+
 
 frontend = os.getenv('FRONTEND_URL')
 backend = os.getenv('BACKEND_URL')

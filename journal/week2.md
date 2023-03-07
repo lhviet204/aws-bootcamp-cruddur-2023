@@ -12,7 +12,22 @@ Integrate Rollbar and capture and error
 
 
 ## Summary
+
+
 ## Homework
+### <strong>Instrument Honeycomb with OTEL
+### <strong>Instrument AWS X-Ray
+### <strong>Configure custom logger to send to CloudWatch Logs
+### <strong>Integrate Rollbar and capture and error
+I did create new Rollbar project with friendly name insated of default one, and intergrate the traces with Rollbar with some traces on new UI
+
+![](./assets/week2/Traces-in-rollbar-ui.png)
+
+![](./assets/week2/Details-traces-from-rollbar-test-endpoint.png)
+
+
+
+
 ## Homework Challenges
 
 ### <strong> Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend [HARD] </strong>

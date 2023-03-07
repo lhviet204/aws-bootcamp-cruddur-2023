@@ -1,7 +1,9 @@
 flask
 flask-cors
 
-aws-xrays-skd
+aws-xrays-sdk
+rollbar
+blinker
 
 opentelemetry-api 
 opentelemetry-sdk 

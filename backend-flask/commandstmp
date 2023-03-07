@@ -1,2 +1,5 @@
 export HONEYCOMB_API_KEY=""
 gp env HONEYCOMB_API_KEY=""
+
+export ROLLBAR_ACCESS_TOKEN=""
+gp env ROLLBAR_ACCESS_TOKEN=""

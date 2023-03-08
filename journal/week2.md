@@ -92,13 +92,13 @@ On Honeycomb we can save usefull queries to use later, or use between team membe
 ![](./assets/week2/chal_add_custom_span.png)
 
 ## References
-https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/
-https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/#opentelemetry-in-the-browser
-https://docs.honeycomb.io/getting-data-in/otel-collector/
-https://docs.honeycomb.io/getting-data-in/otel-collector/#cors-errors
-https://github.com/open-telemetry/opentelemetry-collector/blob/main/config/configtls/README.md
-https://opentelemetry.io/docs/instrumentation/js/exporters/
-https://docs.honeycomb.io/getting-data-in/otel-collector/#cors-errors
-https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/
+- https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/
+- https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/#opentelemetry-in-the-browser
+- https://docs.honeycomb.io/getting-data-in/otel-collector/
+- https://docs.honeycomb.io/getting-data-in/otel-collector/#cors-errors
+- https://github.com/open-telemetry/opentelemetry-collector/blob/main/config/configtls/README.md
+- https://opentelemetry.io/docs/instrumentation/js/exporters/
+- https://docs.honeycomb.io/getting-data-in/otel-collector/#cors-errors
+- https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/
 
 ## Try Harder

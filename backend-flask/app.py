@@ -33,7 +33,9 @@ from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProcessor
 
-
+# AWS CloudWatch Log
+import watchtower
+import logging
 
 # Initialize tracing and an exporter that can send data to Honeycomb
 provider = TracerProvider()
@@ -56,6 +58,14 @@ xray_url = os.getenv("AWS_XRAY_URL")
 xray_recorder.configure(service='cruddur-be-flask', dynamic_naming=xray_url)
 XRayMiddleware(app, xray_recorder)
 
+# Configure Logger to send log to Cloud Watch
+# LOGGER = logging.getLogger(__name__)
+# LOGGER.setLevel(logging.DEBUG)
+# console_handler = logging.StreamHandler()
+# cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
+# LOGGER.addHandler(console_handler)
+# LOGGER.addHandler(cw_handler)
+# LOGGER.info("test log")
 
 frontend = os.getenv('FRONTEND_URL')
 backend = os.getenv('BACKEND_URL')
@@ -80,6 +90,13 @@ def init_rollbar():
         allow_logging_basic_config=False)
     # send exceptions from `app` to rollbar, using flask's signal system.
     got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
+
+# Logger to log any after requests
+#@app.after_request
+#def after_request(response):
+#    timestamp = strftime('[%Y-%b-%d %H:%M]')
+#    LOGGER.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
+#    return response
 
 @app.route("/api/message_groups", methods=['GET'])
 @cross_origin()

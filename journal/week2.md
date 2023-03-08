@@ -25,6 +25,9 @@ Traces arrived on xray AWS service by querying HTTP URL and grouping by HTTP Sta
 Details of trace on xray aws
 ![](./assets/week2/homework_xray_traces_metadata.png)
 ### <strong>Configure custom logger to send to CloudWatch Logs</strong>
+One of the bug when I found that I had the Ruby mindset like Andrew, even I dont' know Ruby. However I fixed the bug, and logs were stremmed to AWS cloudwatch logs.
+
+![](./assets/week2/homework_cloudwatch_logs.png)
 
 ### <strong>Integrate Rollbar and capture and error</strong>
 I did create new Rollbar project with friendly name instead of default one, and intergrate the traces with Rollbar with some traces on new UI

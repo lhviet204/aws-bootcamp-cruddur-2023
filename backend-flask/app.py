@@ -2,9 +2,9 @@ from flask import Flask
 from flask import request
 from flask_cors import CORS, cross_origin
 
-# AWS CloudWatch Log  
-import watchtower
-import logging
+# # AWS CloudWatch Log  
+# import watchtower
+# import logging
 
 # ROLLBAR libs
 import os
@@ -59,13 +59,13 @@ RequestsInstrumentor().instrument()
 # XRayMiddleware(app, xray_recorder)
 
 #Configure Logger to send log to Cloud Watch
-LOGGER = logging.getLogger(__name__)
-LOGGER.setLevel(logging.DEBUG)
-console_handler = logging.StreamHandler()
-cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
-LOGGER.addHandler(console_handler)
-LOGGER.addHandler(cw_handler)
-LOGGER.info("test log")
+# LOGGER = logging.getLogger(__name__)
+# LOGGER.setLevel(logging.DEBUG)
+# console_handler = logging.StreamHandler()
+# cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
+# LOGGER.addHandler(console_handler)
+# LOGGER.addHandler(cw_handler)
+# LOGGER.info("test log")
 
 frontend = os.getenv('FRONTEND_URL')
 backend = os.getenv('BACKEND_URL')
@@ -138,7 +138,8 @@ def data_create_message():
 @app.route("/api/activities/home", methods=['GET'])
 @cross_origin()
 def data_home():
-  data = HomeActivities.run(LOGGER)
+  # data = HomeActivities.run(LOGGER)
+  data = HomeActivities.run()
   return data, 200
 
 @app.route("/api/activities/notifications", methods=['GET'])

@@ -2,10 +2,9 @@ from flask import Flask
 from flask import request
 from flask_cors import CORS, cross_origin
 
-# AWS CloudWatch Log
+# AWS CloudWatch Log  
 import watchtower
 import logging
-
 
 # ROLLBAR libs
 import os
@@ -92,7 +91,7 @@ def init_rollbar():
     # send exceptions from `app` to rollbar, using flask's signal system.
     got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
 
-# Logger to log any after requests
+# Logger to log any after
 #@app.after_request
 #def after_request(response):
 #    timestamp = strftime('[%Y-%b-%d %H:%M]')

@@ -5,6 +5,8 @@ aws-xray-sdk
 rollbar
 blinker
 
+watchtower
+
 opentelemetry-api 
 opentelemetry-sdk 
 opentelemetry-exporter-otlp-proto-http 

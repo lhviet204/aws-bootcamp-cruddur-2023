@@ -2,6 +2,11 @@ from flask import Flask
 from flask import request
 from flask_cors import CORS, cross_origin
 
+# AWS CloudWatch Log
+import watchtower
+import logging
+
+
 # ROLLBAR libs
 import os
 import rollbar.contrib.flask
@@ -32,10 +37,6 @@ from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExport
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProcessor
-
-# AWS CloudWatch Log
-import watchtower
-import logging
 
 # Initialize tracing and an exporter that can send data to Honeycomb
 provider = TracerProvider()

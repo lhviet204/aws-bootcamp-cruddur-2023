@@ -24,6 +24,10 @@ Traces arrived on xray AWS service by querying HTTP URL and grouping by HTTP Sta
 
 Details of trace on xray aws
 ![](./assets/week2/homework_xray_traces_metadata.png)
+
+Segment and subsegment traces
+![](./assets/week2/homework_xray_segment_subsegment.png)
+
 ### <strong>Configure custom logger to send to CloudWatch Logs</strong>
 One of the bug when I found that I had the Ruby mindset like Andrew, even I dont' know Ruby. However I fixed the bug, and logs were stremmed to AWS cloudwatch logs.
 

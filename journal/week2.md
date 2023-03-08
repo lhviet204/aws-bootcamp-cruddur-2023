@@ -1,18 +1,17 @@
 # Week 2 — Distributed Tracing
 - [Summary](#summary)
 - [Homework](#homework)
-Instrument Honeycomb with OTEL
-Instrument AWS X-Ray
-Configure custom logger to send to CloudWatch Logs
-Integrate Rollbar and capture and error
+  - [Instrument Honeycomb with OTEL](#instrument-honeycomb-with-otel)
+  - [Instrument AWS X-Ray](#instrument-aws-x-ray)
+  - [Configure custom logger to send to CloudWatch Logs](#configure-custom-logger-to-send-to-cloudwatch-logs)
+  - [Integrate Rollbar and capture and error](#integrate-rollbar-and-capture-and-error)
 - [Homework Challenges](#homework-challenges)
-- [ ] Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend [HARD]
-- [ ] Add custom instrumentation to Honeycomb to add more attributes eg. UserId, Add a custom span
-- [ ] Run custom queries in Honeycomb and save them later eg. Latency by UserID, Recent Traces
-
+    - [Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend](#-instrument-honeycomb-for-the-frontend-application-to-observe-network-latency-between-frontend-and-backend-hard-)
+    - [Add custom instrumentation to Honeycomb to add more attributes eg. UserId, Add a custom span]
+    - [Run custom queries in Honeycomb and save them later eg. Latency by UserID, Recent Traces](#run-custom-queries-in-honeycomb-and-save-them-later-eg-latency-by-userid-recent-traces-)
 
 ## Summary
-This week I learn by completing the required homework on various solutions for distributed tracings, Logging, Error Logging : i.e. Honeycomb, X-Ray, CloudWatch, Rollbar. I can implement 2 on 3 challenges, expect the add custom instrumentation due to there is no really patter, or details which can be used to identity the usedID.
+This week I learn by completing the required homework on various solutions for distributed tracings, Logging, Error Logging : i.e. Honeycomb, X-Ray, CloudWatch, Rollbar. I can implement 2 on 3 challenges, expect the add custom instrumentation due to there is no really pattern, or details which can be used to identity the userID, I need to see the challegen again when we can implement authentication to have identical user sessions.
 
 ## Homework
 ### <strong>Instrument Honeycomb with OTEL</strong>
@@ -68,11 +67,15 @@ collector, or custom proxy ...
 ![](./assets/week2/chal_propogate_traces_from_FE_to_BE.png)
 
 
-
 ### <strong>Run custom queries in Honeycomb and save them later eg. Latency by UserID, Recent Traces ...</strong>
 On Honeycomb we can save usefull queries to use later, or use between team member when dashboard is shared.
 
 ![](./assets/week2/chal_saved_queries_for_team.png)
+
+### <strong>Add custom instrumentation to Honeycomb to add more attributes eg. UserId, Add a custom span</strong>
+
+![](./assets/week2/chal_add_custom_span.png)
+
 ## References
 https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/#opentelemetry-in-the-browser
 

@@ -54,16 +54,16 @@ services:
       - ./components/otel/otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
       - 4318:4318 # OTLP http collector
-  xray-daemon:
-     image: "amazon/aws-xray-daemon"
-     environment:
-       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
-       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
-       AWS_REGION: "us-east-1"
-     command:
-       - "xray -o -b xray-daemon:2000"
-     ports:
-       - 2000:2000
+  # xray-daemon:
+  #    image: "amazon/aws-xray-daemon"
+  #    environment:
+  #      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+  #      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+  #      AWS_REGION: "us-east-1"
+  #    command:
+  #      - "xray -o -b xray-daemon:2000"
+  #    ports:
+  #      - 2000:2000
 
 volumes:
   db:

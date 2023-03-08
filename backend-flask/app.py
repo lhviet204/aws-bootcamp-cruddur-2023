@@ -54,11 +54,11 @@ FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
 
 # Initialize XRAY
-xray_url = os.getenv("AWS_XRAY_URL")
-xray_recorder.configure(service='cruddur-be-flask', dynamic_naming=xray_url)
-XRayMiddleware(app, xray_recorder)
+# xray_url = os.getenv("AWS_XRAY_URL")
+# xray_recorder.configure(service='cruddur-be-flask', dynamic_naming=xray_url)
+# XRayMiddleware(app, xray_recorder)
 
-Configure Logger to send log to Cloud Watch
+#Configure Logger to send log to Cloud Watch
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.DEBUG)
 console_handler = logging.StreamHandler()
@@ -91,7 +91,7 @@ def init_rollbar():
     # send exceptions from `app` to rollbar, using flask's signal system.
     got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
 
-Logger to log any after
+#Logger to log any after
 @app.after_request
 def after_request(response):
    timestamp = strftime('[%Y-%b-%d %H:%M]')

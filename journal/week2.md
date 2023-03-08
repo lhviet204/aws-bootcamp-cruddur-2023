@@ -7,7 +7,7 @@
   - [Integrate Rollbar and capture and error](#integrate-rollbar-and-capture-and-error)
 - [Homework Challenges](#homework-challenges)
     - [Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend](#-instrument-honeycomb-for-the-frontend-application-to-observe-network-latency-between-frontend-and-backend-hard-)
-    - [Add custom instrumentation to Honeycomb to add more attributes eg. UserId, Add a custom span]
+    - [Add custom instrumentation to Honeycomb to add more attributes eg. UserId, Add a custom span](#add-custom-instrumentation-to-honeycomb-to-add-more-attributes-eg-userid-add-a-custom-span)
     - [Run custom queries in Honeycomb and save them later eg. Latency by UserID, Recent Traces](#run-custom-queries-in-honeycomb-and-save-them-later-eg-latency-by-userid-recent-traces-)
 
 ## Summary
@@ -53,8 +53,20 @@ By doing that, two steps are required :
 - Set up instrument for FE application
 
 #### Step 01: Establish collector
-Following from honeycomb docs, the Collector consists of three components: receivers, processors, and exporters, which are then used to construct telemetry pipelines. All the components will be declared in file named "otel-collector-config.yaml" which we will mount to the docker for Collector.
+Following from honeycomb docs, the Collector consists of three components: receivers, processors, and exporters, which are then used to construct telemetry pipelines. All the components will be declared in file named "otel-collector-config.yaml" [LINK](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/blob/25826d7969d3dc7d70e3e184e5aa31977b70aef7/components/otel/otel-collector-config.yaml) which we will mount to the docker for Collector.
 
+```yaml
+  otel-collector:
+    environment:
+      FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      HONEYCOMB_API_KEY: "${HONEYCOMB_API_KEY}"
+    image: otel/opentelemetry-collector
+    command: [--config=/etc/otel-collector-config.yaml]
+    volumes:
+      - ./components/otel/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - 4318:4318
+```
 
 #### Step 02: Set up instrumentation
 - Prepare the library from OT, and ensure it's included in package.json
@@ -80,18 +92,13 @@ On Honeycomb we can save usefull queries to use later, or use between team membe
 ![](./assets/week2/chal_add_custom_span.png)
 
 ## References
+https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/
 https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/#opentelemetry-in-the-browser
-
 https://docs.honeycomb.io/getting-data-in/otel-collector/
-
-https://github.com/open-telemetry/opentelemetry-collector/blob/main/config/configtls/README.md
-
-https://github.com/open-telemetry/opentelemetry-collector/blob/main/config/configtls/README.md
-
-https://opentelemetry.io/docs/instrumentation/js/exporters/
-
 https://docs.honeycomb.io/getting-data-in/otel-collector/#cors-errors
-
+https://github.com/open-telemetry/opentelemetry-collector/blob/main/config/configtls/README.md
+https://opentelemetry.io/docs/instrumentation/js/exporters/
+https://docs.honeycomb.io/getting-data-in/otel-collector/#cors-errors
 https://docs.honeycomb.io/getting-data-in/opentelemetry/browser-js/
 
 ## Try Harder

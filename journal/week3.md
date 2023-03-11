@@ -4,6 +4,8 @@
 - [Homework Challenges](#homework-challenges)
 
 ## Summary
+This week I learn about how to configure Amazon Coginto and intergrate with ReactJS and Python. I can implement again followng the required homework to have fuctional Cruddur application: like Sign Up, Confirmation, Sign In, Home Page, Recovery Password.
+
 ## Homework
 ## Homework Challenges
 ## Try Harder

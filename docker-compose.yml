@@ -12,8 +12,12 @@ services:
       AWS_DEFAULT_REGION: "us-east-1"
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"      
-      ROLLBAR_ACCESS_TOKEN: "${ROLLBAR_ACCESS_TOKEN}"  
-    build: ./backend-flask
+      ROLLBAR_ACCESS_TOKEN: "${ROLLBAR_ACCESS_TOKEN}"
+      REACT_APP_AWS_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
+      REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
+      REACT_APP_AWS_USER_POOLS_ID: "us-east-1_G80RTI1Zf"
+      REACT_APP_CLIENT_ID: "69gpgnat389mm020fq03hgtmqq"
+    build: ./backend-flask≈
     ports: 
       - "4567:4567"
     volumes:
@@ -54,16 +58,16 @@ services:
       - ./components/otel/otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
       - 4318:4318 # OTLP http collector
-  # xray-daemon:
-  #    image: "amazon/aws-xray-daemon"
-  #    environment:
-  #      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
-  #      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
-  #      AWS_REGION: "us-east-1"
-  #    command:
-  #      - "xray -o -b xray-daemon:2000"
-  #    ports:
-  #      - 2000:2000
+  xray-daemon:
+     image: "amazon/aws-xray-daemon"
+     environment:
+       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+       AWS_REGION: "us-east-1"
+     command:
+       - "xray -o -b xray-daemon:2000"
+     ports:
+       - 2000:2000
 
 volumes:
   db:

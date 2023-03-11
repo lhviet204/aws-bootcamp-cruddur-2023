@@ -15,8 +15,8 @@ services:
       ROLLBAR_ACCESS_TOKEN: "${ROLLBAR_ACCESS_TOKEN}"
       REACT_APP_AWS_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
       REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
-      REACT_APP_AWS_USER_POOLS_ID: "us-east-1_G80RTI1Zf"
-      REACT_APP_CLIENT_ID: "69gpgnat389mm020fq03hgtmqq"
+      REACT_APP_AWS_USER_POOLS_ID: "us-east-1_0CO30Fiti"
+      REACT_APP_CLIENT_ID: "6nnngfmk148v7pm9l86q7bv011"
     build: ./backend-flask
     ports: 
       - "4567:4567"
@@ -34,8 +34,8 @@ services:
       REACT_APP_OTLP_COLLECTOR_URL: "https://4318-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}/v1/traces"
       REACT_APP_AWS_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
       REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
-      REACT_APP_AWS_USER_POOLS_ID: "us-east-1_G80RTI1Zf"
-      REACT_APP_CLIENT_ID: "69gpgnat389mm020fq03hgtmqq"     
+      REACT_APP_AWS_USER_POOLS_ID: "us-east-1_0CO30Fiti"
+      REACT_APP_CLIENT_ID: "6nnngfmk148v7pm9l86q7bv011"     
     build: ./frontend-react-js
     ports: 
       - "3000:3000"

@@ -3,7 +3,7 @@ import React from "react";
 import { useParams } from 'react-router-dom';
 import {ReactComponent as Logo} from '../components/svg/logo.svg';
 
-import { Amplify } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 
 export default function ConfirmationPage() {
   const [email, setEmail] = React.useState('');

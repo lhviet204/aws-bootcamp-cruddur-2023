@@ -16,7 +16,7 @@ export default function ProfileInfo(props) {
       await Auth.signOut({ global: true });
       window.location.href = "/"
   } catch (error) {
-      console.log('error signing out: ', error);
+      console.log('Error signing out: ', error);
   }
   }
 

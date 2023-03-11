@@ -17,7 +17,7 @@ services:
       REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
       REACT_APP_AWS_USER_POOLS_ID: "us-east-1_G80RTI1Zf"
       REACT_APP_CLIENT_ID: "69gpgnat389mm020fq03hgtmqq"
-    build: ./backend-flask≈
+    build: ./backend-flask
     ports: 
       - "4567:4567"
     volumes:

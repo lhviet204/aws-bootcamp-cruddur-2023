@@ -1,14 +1,14 @@
 # Week 3 — Decentralized Authentication
 - [Summary](#summary)
 - [Homework](#homework)
-    - Setup a Cognito User Pool
-    - Custom Signin, Signup, Confirmation and Recovery Pages
+    - [Setup a Cognito User Pool](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/blob/main/journal/week3.md#homework)
+    - [Implement Custom Signin, Signup, Confirmation and Recovery Pages](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/blob/main/journal/week3.md#implement-custom-signin-signup-confirmation-and-recovery-pages)
 - [Homework Challenges](#homework-challenges)
-    - [ ] [Medium] Decouple the JWT verify from the application code by writing a  Flask Middleware
-    - [ ] [Hard] Decouple the JWT verify by implementing a Container Sidecar pattern using AWS’s official Aws-jwt-verify.js library
-    - [ ] [Hard] Decouple the JWT verify process by using Envoy as a sidecar https://www.envoyproxy.io/
-    - [ ] [Hard]  Implement a IdP login eg. Login with Amazon or Facebook or Apple.
-    - [ ] [Easy] Implement MFA that send an SMS (text message), warning this has spend, investigate spend before considering, text messages are not eligible for AWS Credits    
+    - [Decouple the JWT verify from the application code by writing a  Flask Middleware](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/blob/main/journal/week3.md#)
+    - [Decouple the JWT verify by implementing a Container Sidecar pattern using AWS’s official Aws-jwt-verify.js library](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/blob/main/journal/week3.md#decouple-the-jwt-token-validation)
+    - [Decouple the JWT verify process by using Envoy as a sidecar https://www.envoyproxy.io/](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/blob/main/journal/week3.md#decouple-the-jwt-token-validation)
+    - [Implement a IdP login eg. Login with Amazon or Facebook or Apple.](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/blob/main/journal/week3.md#implement-a-idp-login)
+    - [Implement MFA that send an SMS (text message), warning this has spend, investigate spend before considering, text messages are not eligible for AWS Credits]
 
 ## Summary
 This week I learn about how to configure Amazon Coginto and intergrate with ReactJS and Python. I can implement again followng the required homework to have fuctional Cruddur application: like Sign Up, Confirmation, Sign In, Home Page, Recovery Password.

@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import request
 from flask_cors import CORS, cross_origin
-from lib.cognito_jwt_token import CognitoJwtToken, TokenVerifyError, extract_access_token, 
+from lib.cognito_jwt_token import CognitoJwtToken, TokenVerifyError, extract_access_token
 
 # # AWS CloudWatch Log  
 # import watchtower

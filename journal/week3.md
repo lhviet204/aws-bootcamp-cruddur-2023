@@ -47,3 +47,11 @@ I decide to group two challegnes into one sicne they share same requirements and
 
 ### <strong>Implement a IdP login</strong>
 [TO DO] I did some homework search, and decide to try with Okta since they have free tier.
+
+
+Ref
+https://www.envoyproxy.io/docs/envoy/latest/start/docker
+
+https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/jwt_authn_filter#config-http-filters-jwt-authn
+
+https://www.envoyproxy.io/docs/envoy/latest/start/install#pre-built-envoy-docker-images

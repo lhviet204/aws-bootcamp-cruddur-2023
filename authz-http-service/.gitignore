@@ -1,0 +1,14 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+# Optional npm cache directory
+.npm
+# Output of 'npm pack'
+*.tgz
+# Next.js build output
+.next
+out
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

@@ -7,7 +7,7 @@ services:
     volumes:
       - ./components/envoy/envoy.yaml:/etc/envoy/envoy.yaml
   authz:
-    build: ./cognito-authz
+    build: ./authz-http-service
     expose:
       - "9002"
     ports:

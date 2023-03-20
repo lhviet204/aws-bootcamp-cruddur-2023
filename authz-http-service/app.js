@@ -1,31 +1,39 @@
-import { CognitoJwtVerifier } from "aws-jwt-verify";
+const express = require("express");
+const app = express();
+const port = 9002;
+
+const { CognitoJwtVerifier } = require("aws-jwt-verify");
 
 // Verifier that expects valid access tokens:
-const verifier = CognitoJwtVerifier.create({
+const jwtVerifier = CognitoJwtVerifier.create({
     userPoolId: process.env.AWS_COGNITO_USER_POOL_ID,
     tokenUse: process.env.AWS_COGNITO_USER_POOL_CLIENT_ID,
     clientId: "",
 });
 
-const http = require('node:http');
-
-// Create an HTTP server
-const server = http.createServer((req, res) => {
-   try{
-        const authHeader = req.getHeader('Authorization')
-        let payload
-
-        if (authHeader && authHeader.split(' ')[0] === 'Bearer'){
-            payload = verifier.verify(authHeader.split(' ')[1]);
-        } else {
-            payload = verifier.verify(authHeader);
-        }
-        console.log("JWT Token is valid. Token:  ", payload)
-        res.setHeader('x-cognito-username', payload.username);
+app.get("*", async (req, res, next) => {
+    try{
+      const payload = await jwtVerifier.verify(req.header("authorization"));
     } catch (err) {
-    console.error(err);
-    return res.status(200).end()
-    }    
+      console.error(err);
+      return res.status(403).json({ statusCode: 403, message: "Forbidden" });
+    }
+    console.log("JWT Token is valid. Token:  ", payload)
+    res.append('x-cognito-username', payload.username);   
 });
 
-server.listen(9002)
+// Hydrate the JWT verifier, then start express.
+// Hydrating the verifier makes sure the JWKS is loaded into the JWT verifier,
+// so it can verify JWTs immediately without any latency.
+// (Alternatively, just start express, the JWKS will be downloaded when the first JWT is being verified then)
+jwtVerifier
+  .hydrate()
+  .catch((err) => {
+    console.error(`Failed to hydrate JWT verifier: ${err}`);
+    process.exit(1);
+  })
+  .then(() =>
+    app.listen(port, () => {
+      console.log(`Example app listening at http://localhost:${port}`);
+    })
+  );

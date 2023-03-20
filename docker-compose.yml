@@ -6,6 +6,16 @@ services:
       - "10000:10000"
     volumes:
       - ./components/envoy/envoy.yaml:/etc/envoy/envoy.yaml
+  authz:
+    build: ./cognito-authz
+    expose:
+      - "9002"
+    ports:
+      - "9002:9002"
+    environment:
+      AWS_COGNITO_USER_POOL_ID: "${AWS_USER_POOL_ID}"
+      AWS_COGNITO_USER_POOL_CLIENT_ID: "${AWS_USER_POOL_CLIENT_ID}"
+
   backend-flask:
     environment:
       FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"

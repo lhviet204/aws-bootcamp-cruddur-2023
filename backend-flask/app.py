@@ -1,7 +1,8 @@
 from flask import Flask
 from flask import request
 from flask_cors import CORS, cross_origin
-from lib.cognito_jwt_token import CognitoJwtToken, TokenVerifyError, extract_access_token
+# Uncomment if using jwt validation from BE
+# from lib.cognito_jwt_token import CognitoJwtToken, TokenVerifyError, extract_access_token
 
 # # AWS CloudWatch Log  
 # import watchtower
@@ -52,11 +53,12 @@ provider.add_span_processor(simple_processor)
 # Initialize automatic instrumentation with Flask
 app = Flask(__name__)
 
-cognito_jwt_token = CognitoJwtToken(
-  user_pool_id=os.getenv("REACT_APP_AWS_USER_POOLS_ID"), 
-  user_pool_client_id=os.getenv("REACT_APP_CLIENT_ID"),
-  region=os.getenv("AWS_DEFAULT_REGION")
-)
+# Uncomment if using validation from BE
+# cognito_jwt_token = CognitoJwtToken(
+#   user_pool_id=os.getenv("REACT_APP_AWS_USER_POOLS_ID"), 
+#   user_pool_client_id=os.getenv("REACT_APP_CLIENT_ID"),
+#   region=os.getenv("AWS_DEFAULT_REGION")
+# )
 
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
@@ -147,21 +149,31 @@ def data_create_message():
 @cross_origin()
 # @xray_recorder.capture('activities_home')
 def data_home():
-  # data = HomeActivities.run(LOGGER)
-  access_token = extract_access_token(request.headers)
-  try:
-    claims = cognito_jwt_token.verify(access_token)
-    # authenicatied request
-    app.logger.debug("authenicated")
-    app.logger.debug(claims)
-    app.logger.debug(claims['username'])
-    data = HomeActivities.run(cognito_user_id=claims['username'])
-  except TokenVerifyError as e:
-    # unauthenicatied request
-    app.logger.debug(e)
-    app.logger.debug("unauthenicated")
+  # # data = HomeActivities.run(LOGGER)
+  # access_token = extract_access_token(request.headers)
+  # try:
+  #   claims = cognito_jwt_token.verify(access_token)
+  #   # authenicatied request
+  #   app.logger.debug("authenicated")
+  #   app.logger.debug(claims)
+  #   app.logger.debug(claims['username'])
+  #   data = HomeActivities.run(cognito_user_id=claims['username'])
+  # except TokenVerifyError as e:
+  #   # unauthenicatied request
+  #   app.logger.debug(e)
+  #   app.logger.debug("unauthenicated")
+  #   data = HomeActivities.run()
+  # return data, 200
+
+  ## For aws-jwt-verify
+  app.logger.debug(request.headers)
+  cognito_usr = request.get.header("x-cognito-username")
+  if cognito_usr != None:
+    app.logger.debug(f"Authenticated request from {cognito_usr}"
+    data = HomeActivities.run(cognito_user_id=cognito_usr)
+  else:
     data = HomeActivities.run()
-  return data, 200
+  return data, 200  
 
 @app.route("/api/activities/notifications", methods=['GET'])
 @cross_origin()

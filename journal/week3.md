@@ -41,10 +41,13 @@ User can reset password via Recovery Page feature
 
 ### <strong>Decouple the JWT token validation</strong>
 I decide to group two challegnes into one sicne they share same requirements and design pattern.
+- Milestone 0: Containerizate the Envoy: there are two use  cases for consideration : #1 Front-proxy and #2 ext-authz (which might be the desige we're looking for)
 - Milestone 1: Decouple the JWT token validation using offical aws-jwt-verify.js library as sidecar container pattern
 - Milestone 3: using Envoy to route jwt token validation to our new aws-jwt-verify
 - Milestone 3: using builin plugin/fuction (http_fitler) from Envy to verify JWT token. https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/jwt_authn_filter#config-http-filters-jwt-authn
 
+key components of evvy configuration <>
+![]()
 ### <strong>Implement a IdP login</strong>
 [TO DO] I did some homework search, and decide to try with Okta since they have free tier.
 

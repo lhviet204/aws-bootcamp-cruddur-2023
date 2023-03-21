@@ -83,8 +83,8 @@ origins = [frontend, backend]
 cors = CORS(
   app, 
   resources={r"/api/*": {"origins": origins}},
-  headers=['Content-Type', 'Authorization'], 
-  expose_headers='Authorization',
+  allow_headers=['Content-Type', 'Authorization', 'traceparent', 'if-modified-since'], 
+  expose_headers=['Authorization', 'location','link'],
   methods="OPTIONS,GET,HEAD,POST"
 )
 
@@ -167,9 +167,9 @@ def data_home():
 
   ## For aws-jwt-verify
   app.logger.debug(request.headers)
-  cognito_usr = request.get.header("x-cognito-username")
-  if cognito_usr != None:
-    app.logger.debug(f"Authenticated request from {cognito_usr}"
+  cognito_usr = request.headers.get("x-cognito-username", None)
+  if cognito_usr is not None:
+    app.logger.debug(f"Authenticated request from {cognito_usr}")
     data = HomeActivities.run(cognito_user_id=cognito_usr)
   else:
     data = HomeActivities.run()
@@ -236,6 +236,7 @@ def data_activities_reply(activity_uuid):
 
 # For RollBar endpoint
 @app.route('/rollbar/test')
+@cross_origin()
 def rollbar_test():
     rollbar.report_message('Hello Andrew and friends', 'warning')
     return "Hello Andrew and friends!"

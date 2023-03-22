@@ -22,13 +22,22 @@ static_resources:
                 - safe_regex:
                     regex: ".*"
                 allow_methods: GET, PUT, POST, DELETE, OPTIONS
-                allow_headers: Origin, Content-Type, Accept, Authorization, traceparent
+                allow_headers: Origin, Content-Type, Accept, Authorization, traceparent, x-cognito-username
                 expose_headers: Authorization
               routes:
               - match:
                   prefix: "/api"
                 route:
                   cluster: cruddur-be-flask
+                typed_per_filter_config:
+                  envoy.filters.http.cors:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.cors.v3.CorsPolicy
+                    allow_origin_string_match:
+                    - safe_regex:
+                        regex: ".*"
+                    allow_methods: GET, PUT, POST, DELETE, OPTIONS
+                    allow_headers: Origin, Content-Type, Accept, Authorization, traceparent, x-cognito-username
+                    expose_headers: Authorization                                    
           http_filters:
           - name: envoy.filters.http.ext_authz
             typed_config:
@@ -36,7 +45,7 @@ static_resources:
               transport_api_version: V3
               http_service:
                 server_uri:
-                  uri: authz-http-service
+                  uri: "authz:9002"
                   cluster: authz-http-service
                   timeout: 0.250s
                 authorization_response:
@@ -60,7 +69,7 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: cruddur-be-flask
+                address: backend-flask
                 port_value: 4567
   - name: authz-http-service
     type: STRICT_DNS
@@ -72,5 +81,5 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: authz-http-service
+                address: authz
                 port_value: 9002

@@ -85,7 +85,7 @@ cors = CORS(
   app,
   resources={r"/api/*": {"origins": origins}},
   expose_headers=["Authorization"],
-  headers=["Content-Type", "if-modified-since", "traceparent", "Authorization", 'x-cognito-username'],
+  allow_headers=["Content-Type", "if-modified-since", "traceparent", "Authorization", 'x-cognito-username'],
   methods="OPTIONS,GET,HEAD,POST"
 )
 

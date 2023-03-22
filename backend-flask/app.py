@@ -79,12 +79,13 @@ XRayMiddleware(app, xray_recorder)
 
 frontend = os.getenv('FRONTEND_URL')
 backend = os.getenv('BACKEND_URL')
-origins = [frontend, backend]
+envoy = os.getenv('ENVOY_URL')
+origins = [frontend, backend, envoy]
 cors = CORS(
-  app, 
+  app,
   resources={r"/api/*": {"origins": origins}},
-  allow_headers=['Content-Type', 'Authorization', 'traceparent', 'if-modified-since'], 
-  expose_headers=['Authorization', 'location','link'],
+  expose_headers=["Authorization"],
+  headers=["Content-Type", "if-modified-since", "traceparent", "Authorization", 'x-cognito-username'],
   methods="OPTIONS,GET,HEAD,POST"
 )
 
@@ -109,7 +110,6 @@ def init_rollbar():
 #    return response
 
 @app.route("/api/message_groups", methods=['GET'])
-@cross_origin()
 def data_message_groups():
   user_handle  = 'andrewbrown'
   model = MessageGroups.run(user_handle=user_handle)
@@ -119,7 +119,6 @@ def data_message_groups():
     return model['data'], 200
 
 @app.route("/api/messages/@<string:handle>", methods=['GET'])
-@cross_origin()
 def data_messages(handle):
   user_sender_handle = 'andrewbrown'
   user_receiver_handle = request.args.get('user_reciever_handle')
@@ -132,7 +131,6 @@ def data_messages(handle):
   return
 
 @app.route("/api/messages", methods=['POST','OPTIONS'])
-@cross_origin()
 def data_create_message():
   user_sender_handle = 'andrewbrown'
   user_receiver_handle = request.json['user_receiver_handle']
@@ -146,7 +144,6 @@ def data_create_message():
   return
 
 @app.route("/api/activities/home", methods=['GET'])
-@cross_origin()
 # @xray_recorder.capture('activities_home')
 def data_home():
   # # data = HomeActivities.run(LOGGER)

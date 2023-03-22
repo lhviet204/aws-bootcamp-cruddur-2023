@@ -17,6 +17,13 @@ static_resources:
             - name: service
               domains:
               - "*"
+              cors:
+                allow_origin_string_match:
+                - safe_regex:
+                    regex: ".*"
+                allow_methods: GET, PUT, POST, DELETE, OPTIONS
+                allow_headers: Origin, Content-Type, Accept, Authorization, traceparent
+                expose_headers: Authorization
               routes:
               - match:
                   prefix: "/api"
@@ -36,6 +43,9 @@ static_resources:
                   allowed_upstream_headers:
                     patterns:
                       - exact: x-cognito-username
+          - name: envoy.filters.http.cors
+            typed_config:
+              "@type": type.googleapis.com/envoy.extensions.filters.http.cors.v3.Cors                      
           - name: envoy.filters.http.router
             typed_config:
               "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router

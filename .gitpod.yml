@@ -12,9 +12,12 @@ tasks:
   - name: postgres
     init: |
       curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
-      echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | sudo tee  /etc/apt/sources.list.d/pgdg.list
+      echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
       sudo apt update
       sudo apt install -y postgresql-client-13 libpq-dev
+    command: |
+      export GITPOD_IP=$(curl ifconfig.me)
+      source  "$THEIA_WORKSPACE_ROOT/backend-flask/bin/db-update-sg-rule"      
   - name: FE-dependencies
     init: |
       cd $THEIA_WORKSPACE_ROOT/frontend-react-js
@@ -25,12 +28,10 @@ tasks:
       cd $THEIA_WORKSPACE_ROOT/backend-flask
       pip install -r requirements.text
       cd $THEIA_WORKSPACE_ROOT
-
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
     - cweijan.vscode-postgresql-client2
-
 ports:
   - name: collector
     port: 4318

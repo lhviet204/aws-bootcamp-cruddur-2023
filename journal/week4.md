@@ -5,6 +5,8 @@
 - [Homework Challenges](#homework-challenges)
 
 ## Summary
+This week I learn three areas on AWS(RDS, Lambda, Network Security); on programming and project structure (how to establish DB script in bash for setup, connect, drop, create; how to manage SQL scripts seperately), on Python (splating, Interpolation, how to edit mutable python tuple object). There are many weeks I need to catch up with class.
+
 ## Homework
 ## Homework Challenges
 ## Try Harder

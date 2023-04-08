@@ -15,9 +15,9 @@ from flask import got_request_exception
 from time import strftime
 from flask import got_request_exception
 
-# XRAY libs
-from aws_xray_sdk.core import xray_recorder
-from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+# # XRAY libs
+# from aws_xray_sdk.core import xray_recorder
+# from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 
 from services.home_activities import *
 from services.notifications_activities import *
@@ -64,9 +64,9 @@ FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
 
 # Initialize XRAY
-xray_url = os.getenv("AWS_XRAY_URL")
-xray_recorder.configure(service='cruddur-be-flask', dynamic_naming=xray_url)
-XRayMiddleware(app, xray_recorder)
+# xray_url = os.getenv("AWS_XRAY_URL")
+# xray_recorder.configure(service='cruddur-be-flask', dynamic_naming=xray_url)
+# XRayMiddleware(app, xray_recorder)
 
 #Configure Logger to send log to Cloud Watch
 # LOGGER = logging.getLogger(__name__)

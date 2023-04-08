@@ -15,8 +15,8 @@ services:
   #     AWS_COGNITO_USER_POOL_CLIENT_ID: "${AWS_USER_POOL_CLIENT_ID}"
   backend-flask:
     environment:
-      CONNECTION_URL: "postgresql://postgres:password@db:5432/cruddur"
-      #CONNECTION_URL: "${PROD_CONNECTION_URL}"
+      # CONNECTION_URL: "postgresql://postgres:password@db:5432/cruddur"
+      CONNECTION_URL: "${PROD_CONNECTION_URL}"
       ENVOY_URL: "https://8000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
@@ -69,26 +69,26 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
   # Collector
-  otel-collector:
-    environment:
-      FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
-      HONEYCOMB_API_KEY: "${HONEYCOMB_API_KEY}"
-    image: otel/opentelemetry-collector
-    command: [--config=/etc/otel-collector-config.yaml]
-    volumes:
-      - ./components/otel/otel-collector-config.yaml:/etc/otel-collector-config.yaml
-    ports:
-      - 4318:4318 # OTLP http collector
-  xray-daemon:
-     image: "amazon/aws-xray-daemon"
-     environment:
-       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
-       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
-       AWS_REGION: "us-east-1"
-     command:
-       - "xray -o -b xray-daemon:2000"
-     ports:
-       - 2000:2000
+  # otel-collector:
+  #   environment:
+  #     FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+  #     HONEYCOMB_API_KEY: "${HONEYCOMB_API_KEY}"
+  #   image: otel/opentelemetry-collector
+  #   command: [--config=/etc/otel-collector-config.yaml]
+  #   volumes:
+  #     - ./components/otel/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+  #   ports:
+  #     - 4318:4318 # OTLP http collector
+  # xray-daemon:
+  #    image: "amazon/aws-xray-daemon"
+  #    environment:
+  #      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+  #      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+  #      AWS_REGION: "us-east-1"
+  #    command:
+  #      - "xray -o -b xray-daemon:2000"
+  #    ports:
+  #      - 2000:2000
 
 volumes:
   db:

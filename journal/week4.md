@@ -5,51 +5,11 @@
 - [Homework Challenges](#homework-challenges)
 
 ## Summary
-This week I learn three areas on AWS(RDS, Lambda, Network Security); on programming and project structure (how to establish DB script in bash for setup, connect, drop, create; how to manage SQL scripts seperately), on Python (splating, Interpolation, how to edit mutable python tuple object). There are many weeks I need to catch up with class.
+This week I learn three areas on AWS(RDS, Lambda, Network Security); on programming and project structure (how to establish DB script in bash for setup, connect, drop, create; how to manage SQL scripts seperately), on Python (splating, Interpolation, how to edit mutable python tuple object). There are many weeks I need to catch up with class. Continue from the previous setences, this week I start with the remaining of this week. AWS RDS data is created via AWS CLI and allowed the connection from GITPOD. I can load the seed data from AWS RDS from FE. Next step is to create AWS Lambda on AWS.
 
 ## Homework
-## Homework Challenges
-## Try Harder
+- Since we modified the schema of DB to not allow NULL data, so we need to modify the db-seed data to be able for db-setup script.
+![](./assets/week4/Homework_db_seed_modification.png)
 
-## Steps
-
-- Create RDS Database : PostGreSQL
-    - Character set
-    - Timezone
-- Template free-tier
-- Master username (turn off)
-- Back up (turn off)
-
-- Create AWS CLI
-- Stop temp
-- Bring back compose
-- Connect to dynamodb localhost
-
-- Create database cruder
-- \l : list down database
-
-Setting up the variables for connection_url
-
-And prod_connection_url for RDS, and copy the endpoint of RDS from AWS.
-
-- Create folder bin for bash script to create/drop
-- Chmod for executable script
-    - Chmod u+x
-- Edit the connection url to ensure no name of database
-- Register to path to easy call
-- Configure the db schema load .sql for the schema
-    - Realpath. 
-    - #! /usr/bin/bash
-- Configure arguments to easily switch between the local and cloud one
-- Make up some color for other scripts
-- Create tables: users and activities
-    - Traps everywhere
-    - Insert new user_uuid UUID NOT NULL into table activities
-- Drop for some existed tables
-- 4th script - dbconnect
-- 5th db seed
-- Some custom lambda function to put some cognito
-
-- Commit [1d26acf](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/commit/1d26acf5fef57905e8c1aa231279abbe89ad3284)
-
-![](./assets/week2/)
+- After we can setup the DB seed, we can load the seed data from FE.
+![](./assets/week4/Homework_UI_loading_seed_from_RDS.png)

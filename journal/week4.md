@@ -13,3 +13,10 @@ This week I learn three areas on AWS(RDS, Lambda, Network Security); on programm
 
 - After we can setup the DB seed, we can load the seed data from FE.
 ![](./assets/week4/Homework_UI_loading_seed_from_RDS.png)
+
+- We successfully implemented create_activity on our cruddur application, the data will be imported into AWS RDS
+
+![](./assets/week4/Homework_create_activity_successfully.png)
+
+SQL statement is recored on our AWS Cloud Watch logs
+![](./assets/week4/Homework_create_activity_successfully_cloudtrail.png)

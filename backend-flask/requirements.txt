@@ -5,6 +5,8 @@ Flask-AWSCognito
 psycopg[binary]
 psycopg[pool]
 
+boto3
+
 aws-xray-sdk
 rollbar
 blinker

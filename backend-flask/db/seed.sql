@@ -3,7 +3,8 @@
  VALUES
    ('Andrew Brown', 'andrewbrown' ,'MOCK', 'andrew@emailpro.co'),
    ('Tony Stark', 'tony' ,'MOCK', 'tony@emailpro.co'),
-   ('Andrew Bayko', 'bayko' ,'MOCK', 'bayko@emailpro.co');
+   ('Andrew Bayko', 'bayko' ,'MOCK', 'bayko@emailpro.co'),
+   ('Londo Mollari', 'londo','MOCK', 'lmollari@centari.com');
 
  INSERT INTO public.activities (user_uuid, message, expires_at)
  VALUES

@@ -15,9 +15,9 @@ services:
   #     AWS_COGNITO_USER_POOL_CLIENT_ID: "${AWS_USER_POOL_CLIENT_ID}"
   backend-flask:
     environment:
-      # CONNECTION_URL: "postgresql://postgres:password@db:5432/cruddur"
-      CONNECTION_URL: "${PROD_CONNECTION_URL}"
-      ENVOY_URL: "https://8000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      CONNECTION_URL: "postgresql://postgres:password@db:5432/cruddur"
+      # CONNECTION_URL: "${PROD_CONNECTION_URL}"
+      ENVOY_URL: "https://8008-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       OTEL_EXPORTER_OTLP_ENDPOINT: "https://api.honeycomb.io/"
@@ -33,6 +33,9 @@ services:
       REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
       REACT_APP_AWS_USER_POOLS_ID: "us-east-1_0CO30Fiti"
       REACT_APP_CLIENT_ID: "6nnngfmk148v7pm9l86q7bv011"
+      AWS_COGNITO_USER_POOL_ID: "${AWS_USER_POOL_ID}"
+      AWS_COGNITO_USER_POOL_CLIENT_ID: "${AWS_USER_POOL_CLIENT_ID}"     
+      AWS_ENDPOINT_URL: "http://dynamodb-local:8000"  
     build: ./backend-flask
     ports: 
       - "4567:4567"
@@ -52,7 +55,8 @@ services:
       REACT_APP_AWS_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
       REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
       REACT_APP_AWS_USER_POOLS_ID: "us-east-1_0CO30Fiti"
-      REACT_APP_CLIENT_ID: "6nnngfmk148v7pm9l86q7bv011"     
+      REACT_APP_CLIENT_ID: "6nnngfmk148v7pm9l86q7bv011"
+      AWS_ENDPOINT_URL: "http://dynamodb-local:8000"     
     build: ./frontend-react-js
     ports: 
       - "3000:3000"
@@ -108,4 +112,3 @@ networks:
   internal-network:
     driver: bridge
     name: cruddur
-

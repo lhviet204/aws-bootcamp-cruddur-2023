@@ -26,7 +26,7 @@ tasks:
   - name: BE-depdencides
     before: |
       cd $THEIA_WORKSPACE_ROOT/backend-flask
-      pip install -r requirements.text
+      pip install -r requirements.txt
       cd $THEIA_WORKSPACE_ROOT
 vscode:
   extensions:

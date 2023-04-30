@@ -6,8 +6,8 @@ import DesktopSidebar     from '../components/DesktopSidebar';
 import ActivityFeed from '../components/ActivityFeed';
 import ActivityForm from '../components/ActivityForm';
 import ReplyForm from '../components/ReplyForm';
-
-import { Auth } from 'aws-amplify';
+import checkAuth from '../lib/CheckAuth';
+// import { Auth } from 'aws-amplify';
 
 export default function HomeFeedPage() {
   const [activities, setActivities] = React.useState([]);
@@ -38,29 +38,13 @@ export default function HomeFeedPage() {
     }
   };
 
-  const checkAuth = async () => {
-    Auth.currentAuthenticatedUser({
-      bypassCache: false 
-    })
-    .then((user) => {
-      console.log('user',user);
-      return Auth.currentAuthenticatedUser()
-    }).then((cognito_user) => {
-        setUser({
-          display_name: cognito_user.attributes.name,
-          handle: cognito_user.attributes.preferred_username
-        })
-    })
-    .catch((err) => console.log(err));
-  };
-
   React.useEffect(()=>{
     //prevents double call
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
 
     loadData();
-    checkAuth();
+    checkAuth(setUser);
   }, [])
 
   return (

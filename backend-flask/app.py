@@ -56,16 +56,16 @@ app = Flask(__name__)
 
 # Uncomment if using validation from BE
 cognito_jwt_token = CognitoJwtToken(
-  user_pool_id=os.getenv("REACT_APP_AWS_USER_POOLS_ID"), 
-  user_pool_client_id=os.getenv("REACT_APP_CLIENT_ID"),
-  region=os.getenv("AWS_DEFAULT_REGION")
+  user_pool_id=os.getenv('REACT_APP_AWS_USER_POOLS_ID'), 
+  user_pool_client_id=os.getenv('REACT_APP_CLIENT_ID'),
+  region=os.getenv('AWS_DEFAULT_REGION')
 )
 
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
 
 # Initialize XRAY
-# xray_url = os.getenv("AWS_XRAY_URL")
+# xray_url = os.getenv('AWS_XRAY_URL')
 # xray_recorder.configure(service='cruddur-be-flask', dynamic_naming=xray_url)
 # XRayMiddleware(app, xray_recorder)
 
@@ -76,17 +76,16 @@ RequestsInstrumentor().instrument()
 # cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
 # LOGGER.addHandler(console_handler)
 # LOGGER.addHandler(cw_handler)
-# LOGGER.info("test log")
+# LOGGER.info('test log')
 
 frontend = os.getenv('FRONTEND_URL')
 backend = os.getenv('BACKEND_URL')
-envoy = os.getenv('ENVOY_URL')
-origins = [frontend, backend, envoy]
+origins = [frontend, backend]
 cors = CORS(
   app,
   resources={r"/api/*": {"origins": origins}},
-  expose_headers=["Authorization"],
-  allow_headers=["Content-Type", "if-modified-since", "traceparent", "Authorization", 'x-cognito-username'],
+  expose_headers=['Authorization'],
+  headers=['Content-Type', 'if-modified-since', 'traceparent', 'Authorization', 'x-cognito-username'],
   methods="OPTIONS,GET,HEAD,POST"
 )
 
@@ -95,7 +94,7 @@ cors = CORS(
 
 # @app.before_first_request
 # def init_rollbar():
-#     """init rollbar module"""
+#     '''init rollbar module'''
 #     rollbar.init(rollbar_access_token,
 #         'production',
 #         root=os.path.dirname(os.path.realpath(__file__)),
@@ -110,13 +109,13 @@ cors = CORS(
 #    LOGGER.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
 #    return response
 
-@app.route("/api/message_groups", methods=['GET'])
+@app.route('/api/message_groups', methods=['GET'])
 def data_message_groups():
   access_token = extract_access_token(request.headers)
   try:
     claims = cognito_jwt_token.verify(access_token)
     # authenicatied request
-    app.logger.debug("authenicated")
+    app.logger.debug('authenicated')
     app.logger.debug(claims)
     cognito_user_id = claims['sub']
     model = MessageGroups.run(cognito_user_id=cognito_user_id)
@@ -128,13 +127,13 @@ def data_message_groups():
     app.logger.debug(e)
     return {}, 401
 
-@app.route("/api/messages/<string:message_group_uuid>", methods=['GET'])
+@app.route('/api/messages/<string:message_group_uuid>', methods=['GET'])
 def data_messages(message_group_uuid):
   access_token = extract_access_token(request.headers)
   try:
     claims = cognito_jwt_token.verify(access_token)
     # authenicatied request
-    app.logger.debug("authenicated")
+    app.logger.debug('authenicated')
     app.logger.debug(claims)
     cognito_user_id = claims['sub']
     model = Messages.run(
@@ -150,13 +149,14 @@ def data_messages(message_group_uuid):
     app.logger.debug(e)
     return {}, 401
 
-@app.route("/api/messages", methods=['POST','OPTIONS'])
+@app.route('/api/messages', methods=['POST','OPTIONS'])
+@cross_origin()
 def data_create_message():
   access_token = extract_access_token(request.headers)
   try:
     claims = cognito_jwt_token.verify(access_token)
     # authenicatied request
-    app.logger.debug("authenicated")
+    app.logger.debug('authenicated')
     cognito_user_id = claims['sub']
     message = request.json['message']
 
@@ -166,7 +166,7 @@ def data_create_message():
     if message_group_uuid == None:
       # Create for the first time
       model = CreateMessage.run(
-        mode="create",
+        mode='create',
         message=message,
         cognito_user_id=cognito_user_id,
         user_receiver_handle=user_receiver_handle
@@ -174,7 +174,7 @@ def data_create_message():
     else:
       # Push onto existing Message Group
       model = CreateMessage.run(
-        mode="update",
+        mode='update',
         message=message,
         message_group_uuid=message_group_uuid,
         cognito_user_id=cognito_user_id
@@ -187,10 +187,10 @@ def data_create_message():
   except TokenVerifyError as e:
     # unauthenicatied request
     app.logger.debug(e)
-    app.logger.debug("unauthenicated")
+    app.logger.debug('unauthenicated')
     return {}, 401
 
-@app.route("/api/activities/home", methods=['GET'])
+@app.route('/api/activities/home', methods=['GET'])
 # @xray_recorder.capture('activities_home')
 def data_home():
   # # data = HomeActivities.run(LOGGER)
@@ -198,40 +198,38 @@ def data_home():
   # try:
   #   claims = cognito_jwt_token.verify(access_token)
   #   # authenicatied request
-  #   app.logger.debug("authenicated")
+  #   app.logger.debug('authenicated')
   #   app.logger.debug(claims)
   #   app.logger.debug(claims['username'])
   #   data = HomeActivities.run(cognito_user_id=claims['username'])
   # except TokenVerifyError as e:
   #   # unauthenicatied request
   #   app.logger.debug(e)
-  #   app.logger.debug("unauthenicated")
+  #   app.logger.debug('unauthenicated')
   #   data = HomeActivities.run()
   # return data, 200
 
   ## For aws-jwt-verify
   app.logger.debug(request.headers)
-  cognito_usr = request.headers.get("x-cognito-username", None)
+  cognito_usr = request.headers.get('x-cognito-username', None)
   if cognito_usr is not None:
-    app.logger.debug(f"Authenticated request from {cognito_usr}")
+    app.logger.debug(f'Authenticated request from {cognito_usr}')
     data = HomeActivities.run(cognito_user_id=cognito_usr)
   else:
     data = HomeActivities.run()
   return data, 200  
 
-@app.route("/api/activities/notifications", methods=['GET'])
-@cross_origin()
+@app.route('/api/activities/notifications', methods=['GET'])
 def data_notifications():
   data = NotificationsActivities.run()
   return data, 200
 
-@app.route("/api/users/@<string:handle>/short", methods=['GET'])
+@app.route('/api/users/@<string:handle>/short', methods=['GET'])
 def data_users_short(handle):
   data = UsersShort.run(handle)
   return data, 200
 
-@app.route("/api/activities/@<string:handle>", methods=['GET'])
-@cross_origin()
+@app.route('/api/activities/@<string:handle>', methods=['GET'])
 @xray_recorder.capture('activities_user')
 def data_handle(handle):
   model = UserActivities.run(handle)
@@ -240,8 +238,7 @@ def data_handle(handle):
   else:
     return model['data'], 200
 
-@app.route("/api/activities/search", methods=['GET'])
-@cross_origin()
+@app.route('/api/activities/search', methods=['GET'])
 def data_search():
   term = request.args.get('term')
   model = SearchActivities.run(term)
@@ -251,7 +248,7 @@ def data_search():
     return model['data'], 200
   return
 
-@app.route("/api/activities", methods=['POST','OPTIONS'])
+@app.route('/api/activities', methods=['POST','OPTIONS'])
 @cross_origin()
 def data_activities():
   user_handle  = 'andrewbrown'
@@ -264,14 +261,13 @@ def data_activities():
     return model['data'], 200
   return
 
-@app.route("/api/activities/<string:activity_uuid>", methods=['GET'])
-@cross_origin()
+@app.route('/api/activities/<string:activity_uuid>', methods=['GET'])
 # @xray_recorder.capture('activities_show')
 def data_show_activity(activity_uuid):
   data = ShowActivity.run(activity_uuid=activity_uuid)
   return data, 200
 
-@app.route("/api/activities/<string:activity_uuid>/reply", methods=['POST','OPTIONS'])
+@app.route('/api/activities/<string:activity_uuid>/reply', methods=['POST','OPTIONS'])
 @cross_origin()
 def data_activities_reply(activity_uuid):
   user_handle  = 'andrewbrown'
@@ -288,12 +284,7 @@ def data_activities_reply(activity_uuid):
 @cross_origin()
 def rollbar_test():
     rollbar.report_message('Hello Andrew and friends', 'warning')
-    return "Hello Andrew and friends!"
+    return 'Hello Andrew and friends!'
 
-@app.route("/api/users/@<string:handle>/short", methods=['GET'])
-def data_users_short(handle):
-  data = UsersShort.run(handle)
-  return data, 200
-
-if __name__ == "__main__":
+if __name__ == '__main__':
   app.run(debug=True)

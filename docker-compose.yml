@@ -15,8 +15,8 @@ services:
   #     AWS_COGNITO_USER_POOL_CLIENT_ID: "${AWS_USER_POOL_CLIENT_ID}"
   backend-flask:
     environment:
-      CONNECTION_URL: "postgresql://postgres:password@db:5432/cruddur"
-      # CONNECTION_URL: "${PROD_CONNECTION_URL}"
+      #CONNECTION_URL: "postgresql://postgres:password@db:5432/cruddur"
+      CONNECTION_URL: "${PROD_CONNECTION_URL}"
       ENVOY_URL: "https://8008-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
@@ -35,7 +35,7 @@ services:
       REACT_APP_CLIENT_ID: "6nnngfmk148v7pm9l86q7bv011"
       AWS_COGNITO_USER_POOL_ID: "${AWS_USER_POOL_ID}"
       AWS_COGNITO_USER_POOL_CLIENT_ID: "${AWS_USER_POOL_CLIENT_ID}"     
-      AWS_ENDPOINT_URL: "http://dynamodb-local:8000"  
+      #AWS_ENDPOINT_URL: "http://dynamodb-local:8000"  
     build: ./backend-flask
     ports: 
       - "4567:4567"

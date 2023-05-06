@@ -281,12 +281,17 @@ def data_activities_reply(activity_uuid):
     return model['data'], 200
   return
 
-# For RollBar endpoint
-@app.route('/rollbar/test')
-@cross_origin()
-def rollbar_test():
-    rollbar.report_message('Hello Andrew and friends', 'warning')
-    return 'Hello Andrew and friends!'
+# For Health Check
+@app.route('/api/health-check')
+def health_check():
+  return {'Success': True}, 200
+
+# # For RollBar endpoint
+# @app.route('/rollbar/test')
+# @cross_origin()
+# def rollbar_test():
+#     rollbar.report_message('Hello Andrew and friends', 'warning')
+#     return 'Hello Andrew and friends!'
 
 if __name__ == '__main__':
   app.run(debug=True)

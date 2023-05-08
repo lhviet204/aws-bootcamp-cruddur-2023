@@ -6,7 +6,7 @@ import DesktopSidebar     from '../components/DesktopSidebar';
 import ActivityFeed from '../components/ActivityFeed';
 import ActivityForm from '../components/ActivityForm';
 import ReplyForm from '../components/ReplyForm';
-import checkAuth from '../lib/CheckAuth';
+import {checkAuth, getAccessToken} from '../lib/CheckAuth';
 // import { Auth } from 'aws-amplify';
 
 export default function HomeFeedPage() {
@@ -21,9 +21,12 @@ export default function HomeFeedPage() {
     try {
       const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/home`
       //const backend_url = `${process.env.REACT_APP_ENVOY_URL}/api/activities/home`
+      // await getAccessToken()
+      // const access_token = localStorage.getItem("access_token")
+      const access_token = await getAccessToken();
       const res = await fetch(backend_url, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`
+          Authorization: `Bearer ${access_token}`
         },
         method: "GET"
       });

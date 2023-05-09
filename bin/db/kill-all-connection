@@ -12,7 +12,12 @@ else
 URL=$CONNECTION_URL
 fi
 
-kill_path="$(realpath .)/db/kill-all.sql"
+ABS_PATH=$(readlink -f "$0")
+DB_PATH=$(dirname $ABS_PATH)
+BIN_PATH=$(dirname $DB_PATH)
+PROJECT_PATH=$(dirname $BIN_PATH)
+BACKEND_FLASK_PATH="$PROJECT_PATH/backend-flask"
+kill_path="$BACKEND_FLASK_PATH/db/kill-all.sql"
 echo $kill_path
 
 psql $CONNECTION_URL cruddur < $kill_path

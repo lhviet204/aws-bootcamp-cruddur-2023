@@ -56,8 +56,8 @@ app = Flask(__name__)
 
 # Uncomment if using validation from BE
 cognito_jwt_token = CognitoJwtToken(
-  user_pool_id=os.getenv('REACT_APP_AWS_USER_POOLS_ID'), 
-  user_pool_client_id=os.getenv('REACT_APP_CLIENT_ID'),
+  user_pool_id=os.getenv('AWS_COGNITO_USER_POOL_ID'), 
+  user_pool_client_id=os.getenv('AWS_COGNITO_USER_POOL_CLIENT_ID'),
   region=os.getenv('AWS_DEFAULT_REGION')
 )
 

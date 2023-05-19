@@ -56,6 +56,41 @@ Week08 : Serving Avatars via Cloud Front https://www.youtube.com/watch?v=Hl5XVb7
 Current github commit https://github.com/omenking/aws-bootcamp-cruddur-2023/commits/week-8-again
  
 
+Next videos is week 8 - to implement migrations backend endpoint and profile form
+
+- Edit python docker file on dev env to debug more easily.
+- Edit gitpod yaml for fully functional working tabs
+- Do sth to fix the prepare script for spin up the dev env
+- Come 22:00 to do some config for frontend js.
+- Implement edit profile form 25:18 (profile-form.js / profile-form.css)
+- Import new form UserFeedPage.js
+- Implement new popup.css, and import it into app.js as global
+- Implement new endpoint for backend
+    - Declare new route /api/profile/update
+    - Import updateprofile
+    - Implement update profile from services
+- Implement new sql stored_procedure from user folder
+    - SQL migration tool?
+- Make new folder bin generate
+    - File migration python
+    - Folder migrate/rollback for bin folder.
+    - We need new table so edit schema load for new table .
+    - Update new arguments called verbose for python db.py
+- Migration == sql academy, sql transaction from postgres
+- Edit name of the query from db.py to correct name function query elect object  to query object json (actual a dict)
+- Bio == bio from social medial 
+- Edit project heading.js and css
+- Edit show.sql to return bio from sql statement
+Commit name : implement  implement migrations, implement the profile page, imeplement the endp…
+
+
+Next thing:
+- S3 bucket upload client side
+- Upload s3 folder, then spit back out
+- Lambda to check cache, and server it?
+
+
+
 Next steps:
 - To implement AWS Cloud Front
 

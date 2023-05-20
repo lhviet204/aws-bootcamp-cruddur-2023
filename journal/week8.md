@@ -89,18 +89,250 @@ Next thing:
 - Upload s3 folder, then spit back out
 - Lambda to check cache, and server it?
 
+Steps to implement Avatar Uploading, the design will require to implement two Lambda (Authorization, Get pre-signed URL and upload the images with UUID name), API gateway with custom domain name.
 
+- Create API gateway and get revoke URL, configure route
+- Create two buckets and implement CORS for each of them
+- Create Lambda function CruddurAvatarUpload
+- Create a new role with basic Lambda permission and PresignedAvatarPresignedURL IAM permission, and make sure Cloud Watch logs permission to debug
+- Revise local env for FE with new implementation including presigned URL, API GW endpoint, 
+- Configure DB scripts with migrate, consolidate to one script to prepare for local env
+- Configure FE new implmenetation 
+- Configure Lambda Layers for RUBY lambday can validate and parse JWT token and name the avatar correctonly on the bucket.
+- Implement new FE code to render avatar
 
-Next steps:
-- To implement AWS Cloud Front
-
-- To integrate with the current applications
-https://www.youtube.com/watch?v=WdVPx-LLjQ8
-
-
-
-
+Tips:
+- Be aware of CORS, env every single time,  and custom domain name needs to be pointed correctly to revoke URL of API GW.
+- To prepare AWS CLI for create lamda layers, apply layers for exisiting lambda
+- To prepare lambda python instead of ruby
+- To edit gitpod.yaml for productivity
 
 
 - Commit [1d26acf](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/commit/1d26acf5fef57905e8c1aa231279abbe89ad3284)
 ![](./assets/week2/)
+
+
+### Raw note:
+implement avatar uploading
+
+- remind boostrap for s3 to upload sample datas to s3.
+
+- will put profileform.js page
+
+cd front-react-js
+npm i @aws-sdk/client-s3 --save
+
+how to configure the javascript client side
+
+recommd using webpack to bunder the required SDK for java script files.
+
+/ building sdk for browsers
+
+pre-signed url to upload an object s3.
+
+>> to decide API Gateway and lambda for doing
+(support free tier)
+find jwt authorizer for API
+
+Create Lambda function
+CruddurAvatarUpload
+Create a new role with basic Lambda permission
+
+Make new folder on source code for saving
+20:00 https://www.youtube.com/watch?v=Bk2tq4pliy8
+to configure rb
+to configure the client by using local environment 
++ set up the bucketname for uploading avatar
++ ? configure the required content type for request.
+
+install "ox" for library using from ruby.
+
+implement the ruby exmaple
+then run the command
+"bundle exec ruby function.rb"
+
+configure ways on uploading s3 via presigned url on vscode generated from previous step.
+
+https://aws.amazon.com/blogs/compute/uploading-to-amazon-s3-directly-from-a-web-or-mobile-application/
+
+running by method PUT for s3
+
+create the life cycle configuration on s3 management
+
+copy rb code to lambda ruby
+crate iam policy for that
+ensure to point directly to ARN
+
+PresignedAvatarPresignedURL
+
+Copy to source code also (folder policies)
+
+edit sth on handler (what is handler)
+
+still to required lambda authorizer
+
+create new lambda authorizer 
+file index.js from github of aws; (checking token_use)
+
+zip and upload under zip for contain the package json for lambda authorizer
+
+- create API Gateway
+1. for upload
+2. route
+
+
+get the status of aws resources by CLI : 1:08:00
+
+then attach authorizer for the upload lambda
+
+create deployment
+
+then have the invoke url, try the invoke url.
+
+working with local env
+
+compose up
+db step
+ddb schemaload, and ddb seed
+
+then intergrate with new lambda
+
+s3upload const
+on profile form and profile css
+- const backend url from revoke url from api gateway.
+- post the request to get the presigned url
+- then put the image by using presigned url
+
+check api gateway on stage (deployment)
+
+''' question?
+CORS: options for api gateway
+then put?
+'''
+
+issues with checking the implementation of profile page for local environment because the schema is missing bio, so we need to run migrate. /bin/db/migrate
+
+get presigned url 
+
+pass along binary data
+
+still CORS issues with API gateway for uploading and authorize
+
++ commit name is "almost got uploading state completely"
+CORS
+access control allow header
+access control expose header
+
+###
+new video for https://www.youtube.com/watch?v=eO7bw6_nOIc
+
+1. fix the gitpod yaml with bash run required scripts like ecr login
+2. ruby (not using generate env) >> might be we implement our own solution
+
+add proxy for letting lambda handle the allow headers and expose headers
+
+revise setup script to include the migrate script also.
+
+and aslo pass orgin with the request from FE also on "ProfileForm.js"
+
+remember about the syntax of CORS and Orgin, no need the forward trailling and slash.
+
+commit name is "run migration when we do setup, generating out presigned url should work
+
+Question
+point our LB to our API GW, then create prefix >> to API GW, Fargate
+
+create custom domain names to api.cruddur.com
+>> how does it work?
+
+next steps
+- to watch videos for final cors
+- to see the render avatar
+- week 09
+
+Ask GPT on working
+
+env file for K8S
+and CISA DEVSECOPS
+
+
+@@@ 
+Come to findal CORS
+https://www.youtube.com/watch?v=uWhdz5unipA
+
+- Implement CORS for Buckets on the left.
+- Edit bucket policy for s3 https://youtu.be/uWhdz5unipA?t=267
+- put new file into folder s3 at our source code.
+
+then run db setup to include the migrate (put python infront of the script)
+
+ALB can't be put 
+infront of API GW, due to no target group.
+so need to have custom domains.
+
+be careful to create or update the API GW, the domain will be changed.
+
+Be careful to check URL for FE, for API GW and BE. then to run the script upload.
+
+on UI of API GW
+- APIS >> when we change or update new URL will be generated
+- Custom domain name needs to be mapped directly with APIs on the tops.
+
+afer edit CORS on the bucket
+edit the domain name and URL for API GW, the variables from the source code; we can upload image successfully
+
+check logsource group of lambda named "cruddurAvatarUpload"
+
+check the week 06 for default handler with Ms chinese
+
+so right now we want to replace the real uploaded data instead of mock.jpg; we're doing some stuff to parse the jwt token, get the metadata from the images ....
+
+lambda layers can solve the required dependices and library . ask bing on that
+
+lambda ruby runtime (to check what is the default installation for runtime env)
+
+>> zip the cruddur upload avatar again after install all required dependcies for ruby.
+
+>> come to make lambda layers for ruby, kind of like docker layer
+
+>> the using aws cli to edit or upload layers to our current lambda
+
+upload layer
+then configure the lamba to use that layer.
+
+remember to configure orgin to prod env when we're working on the AWS
+
+What we're trying to do is decode the jwt token to get uuid and put the name on the file, and upload into the bucket.
+
+commit name is:
+make sure we can upload the avatar
+
+@ video about render avatar from cloud front
+https://www.youtube.com/watch?v=xrFo3QLoBp8
+
+Create ProfileAvatar.js and css
+Edit CheckAuth
+Import ProfileAvart to ProfileInfo.js
+Edit ProfileHeading.js
+Edit show.sql
+https://github.com/omenking/aws-bootcamp-cruddur-2023/commit/ecd2f12ee5043b3ac731fb45ec5d268d8ffe192f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+code examples
+Strangler pattern

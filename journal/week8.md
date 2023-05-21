@@ -6,10 +6,24 @@
 
 ## TODO
 - Implement CDK pipeline
+    2nd commit https://github.com/omenking/aws-bootcamp-cruddur-2023/commit/5626b910c3d01ac49893ea182b186b4b9b1d7ebe#diff-8b72e4ebe6afc9b82fcdb1f144c2859c958ab22b41da71a16b22e3477411589b
+
+    what does it implement in the nut shell ? lambda?
+    
 - Implement boostrapping and utilities scripts
     https://github.com/omenking/aws-bootcamp-cruddur-2023/commit/c0743853bb5f7761c253a4ddb21b7908d1d36724
-    
+    for local envirornment espeicall on database
+- Implement lambda https://github.com/omenking/aws-bootcamp-cruddur-2023/commit/a1559e12f9791edf17024a7e4ccc545447487979#diff-a2ae174ea6ad8824e8dd9bbbe6235d2a8f51ab4ca4b17c1686750c00b589fa98
+    - cruddur-upload-avatar
+        + to ensure CORS as HTTP Header configuration https://github.com/omenking/aws-bootcamp-cruddur-2023/commit/f0b1469a1b075acb60762ab108a021d945c24d69#diff-8bb1ceece57f661ba58a537e598e8341708a57e707267ea40b4b3470b1f8a0fb
 
+        revise to parse the UUID https://github.com/omenking/aws-bootcamp-cruddur-2023/commit/577be5a2ded14bb9572ed99892ecc58361956aec#diff-8bb1ceece57f661ba58a537e598e8341708a57e707267ea40b4b3470b1f8a0fb
+
+    - lambda authorizer 
+        + to build the layer https://github.com/omenking/aws-bootcamp-cruddur-2023/commit/577be5a2ded14bb9572ed99892ecc58361956aec#diff-15a93ce383061e0d60c29596313d0c887c7bfdc7e8b24cde175e3dce0bc7b917
+        + get the AWS CLI to push the layer and attach to the lambda
+
+    - Search //TODO to fix the env
 
 ## Summary
 This week, I've learned about CDK to create AWS Services like Lambda, S3 bucket, IAM roles for Cruddur uploading avatars for User Profiles. The concept for now is user uploading images to AWS S3 folder named original, the images will be progressed by lambda with js sharp library to resize the pictures and send back confirmation to our application webhook (?)

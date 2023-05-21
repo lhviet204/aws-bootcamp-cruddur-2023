@@ -4,6 +4,13 @@
 - [Summary](#summary)
 - [Homework](#homework)
 
+## TODO
+- Implement CDK pipeline
+- Implement boostrapping and utilities scripts
+    https://github.com/omenking/aws-bootcamp-cruddur-2023/commit/c0743853bb5f7761c253a4ddb21b7908d1d36724
+    
+
+
 ## Summary
 This week, I've learned about CDK to create AWS Services like Lambda, S3 bucket, IAM roles for Cruddur uploading avatars for User Profiles. The concept for now is user uploading images to AWS S3 folder named original, the images will be progressed by lambda with js sharp library to resize the pictures and send back confirmation to our application webhook (?)
 
@@ -22,6 +29,16 @@ High level of implementation is described as below:
 - Boosting trapping the folder for each region implemeting
 - Implemeting the stack code with S3, Lambda, env library
 - Implemeting the utilit scripts to upload data, clear data of samples
+
+TODO: Missing steps for gitpod
+
+npm install aws-cdk -g
+cdk init app --language typescript
+then edit on the folders with new code (skip)
+
+https://github.com/omenking/aws-bootcamp-cruddur-2023/commit/cd7f2ebf4fa3034e4b2e0fe36fa4e04ee566e847
+https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-8-serverless-cdk/journal/week8.md
+
 
 Implement AWS Cloud Front
 Week08 : Serving Avatars via Cloud Front https://www.youtube.com/watch?v=Hl5XVb7dL6I

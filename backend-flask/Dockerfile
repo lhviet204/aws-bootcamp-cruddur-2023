@@ -1,4 +1,4 @@
-# Stage 1: Prepare the app source code
+dockerfile# Stage 1: Prepare the app source code
 FROM python:3.10-slim-buster AS builder
 
 WORKDIR /backend-flask
@@ -22,7 +22,7 @@ ENV PATH=/root/.local/bin:$PATH
 COPY external_flask.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/external_flask.sh
 
-ENV FLASK_ENV=development
+ENV PYTHONUNBUFFERED=1
 
 EXPOSE ${PORT}
 

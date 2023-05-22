@@ -1,0 +1,17 @@
+```sh
+aws lambda update-function-configuration --function-name my-function \
+  --environment "Variables={BUCKET=my-bucket,KEY=file.txt}"
+```
+
+When you apply environment variables with the `update-function-configuration` command, the entire contents of the `Variables` structure is replaced. To retain existing environment variables when you add a new one, include all existing values in your request.
+
+```sh
+aws lambda get-function-configuration --function-name my-function
+```
+
+aws lambda publish-layer-version \
+   --layer-name jwt \
+   --description "Lambda Layer for JWT" \
+   --license-info "MIT" \
+   --zip-file fileb://lambda-layers.zip \
+   --compatible-runtimes ruby2.7 

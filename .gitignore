@@ -2,3 +2,4 @@ tmp/*
 .DS_Store
 docker/**/*
 frontend-react-js/build/*
+node_modules

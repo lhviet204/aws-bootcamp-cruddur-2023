@@ -8,7 +8,7 @@
 - On gitpods
 
 #1 Implement lambda progress images
-cd aws/lambdas/process-images
+cd aws/lambda/process-images
 npm init -y
 npm install sharp @aws-sdk/client-s3
 

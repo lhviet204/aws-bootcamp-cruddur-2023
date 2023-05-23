@@ -232,7 +232,7 @@ def data_users_short(handle):
   return data, 200
 
 @app.route('/api/activities/@<string:handle>', methods=['GET'])
-@xray_recorder.capture('activities_user')
+#@xray_recorder.capture('activities_user')
 def data_handle(handle):
   model = UserActivities.run(handle)
   if model['errors'] is not None:

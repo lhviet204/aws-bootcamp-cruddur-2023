@@ -39,7 +39,7 @@ tasks:
       npm install aws-cdk -g
   - name: ready
     before: |       
-      "$THEIA_WORKSPACE_ROOT/bin/ecr/login"
+      bash "$THEIA_WORKSPACE_ROOT/bin/ecr/login"
 vscode:
   extensions:
     - 42Crunch.vscode-openapi

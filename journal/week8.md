@@ -7,6 +7,9 @@
 ## TODO
 - On gitpods
 
+#0 Create s3 manually with the name: assets.<domain-name>
+
+
 #1 Implement lambda progress images
 cd aws/lambda/process-images
 npm init -y
@@ -23,7 +26,10 @@ Create stack ThumbingServerlessCdkStack:
 
 run cdk synth to review cdk.out
 run cdk bootstrap "aws://${AWS_ACCOUNT_ID}/${AWS_DEFAULT_REGION}" 
+<DONE>
+
 run cdk deploy
+
 
 - AWS parts
     + implement cloud front

@@ -35,7 +35,7 @@ services:
       REACT_APP_CLIENT_ID: "6nnngfmk148v7pm9l86q7bv011"
       AWS_COGNITO_USER_POOL_ID: "${AWS_USER_POOL_ID}"
       AWS_COGNITO_USER_POOL_CLIENT_ID: "${AWS_USER_POOL_CLIENT_ID}"     
-      #AWS_ENDPOINT_URL: "http://dynamodb-local:8000"  
+      AWS_ENDPOINT_URL: "http://dynamodb-local:8000"  
     build: ./backend-flask
     ports: 
       - "4567:4567"
@@ -51,12 +51,14 @@ services:
     environment:
       REACT_APP_ENVOY_URL: "https://8000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       REACT_APP_BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
+      REACT_APP_FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       REACT_APP_OTLP_COLLECTOR_URL: "https://4318-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}/v1/traces"
       REACT_APP_AWS_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
       REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
       REACT_APP_AWS_USER_POOLS_ID: "us-east-1_0CO30Fiti"
       REACT_APP_CLIENT_ID: "6nnngfmk148v7pm9l86q7bv011"
-      AWS_ENDPOINT_URL: "http://dynamodb-local:8000"     
+      AWS_ENDPOINT_URL: "http://dynamodb-local:8000"
+      REACT_APP_API_GATEWAY_ENDPOINT_URL: "https://37l98a990d.execute-api.us-east-1.amazonaws.com"     
     build: ./frontend-react-js
     ports: 
       - "3000:3000"

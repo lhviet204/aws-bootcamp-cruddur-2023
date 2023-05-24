@@ -30,6 +30,7 @@ from services.messages import *
 from services.create_message import *
 from services.show_activity import *
 from services.users_short import *
+from services.update_profile import *
 
 # HONEYCOMB libs
 from opentelemetry import trace

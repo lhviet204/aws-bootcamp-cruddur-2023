@@ -1,12 +1,14 @@
 {
-  "name": "aws-bootcamp-cruddur-2023",
+  "name": "lambda-authorizer",
   "version": "1.0.0",
-  "description": "- Application: Cruddur - Cohort: 2023-A1",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "aws-jwt-verify": "^4.0.0"
+  }
 }

@@ -2,7 +2,7 @@ require 'aws-sdk-s3'
 require 'json'
 require 'jwt'
 
-def handler(event:, context:)
+def lambda_handler(event:, context:)
   puts event
   # return cors headers for preflight check
   if event['routeKey'] == "OPTIONS /{proxy+}"
@@ -10,7 +10,7 @@ def handler(event:, context:)
     { 
       headers: {
         "Access-Control-Allow-Headers": "*, Authorization",
-        "Access-Control-Allow-Origin": "https://3000-omenking-awsbootcampcru-2n1d6e0bd1f.ws-us94.gitpod.io",
+        "Access-Control-Allow-Origin": "https://3000-lhviet204-awsbootcampcr-bgsgpelsdm8.ws-us98.gitpod.io",
         "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
       },
       statusCode: 200
@@ -38,7 +38,7 @@ def handler(event:, context:)
     { 
       headers: {
         "Access-Control-Allow-Headers": "*, Authorization",
-        "Access-Control-Allow-Origin": "https://3000-omenking-awsbootcampcru-2n1d6e0bd1f.ws-us94.gitpod.io",
+        "Access-Control-Allow-Origin": "https://3000-lhviet204-awsbootcampcr-bgsgpelsdm8.ws-us98.gitpod.io",
         "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
       },
       statusCode: 200, 

@@ -18,11 +18,15 @@ export default function ProfileForm(props) {
       const gateway_url = `${process.env.REACT_APP_API_GATEWAY_ENDPOINT_URL}/avatars/key_upload`
       await getAccessToken()
       const access_token = localStorage.getItem("access_token")
+      console.log('token',access_token)
       const json = {
         extension: extension
       }
+      // const abc = `${process.env.REACT_APP_FRONTEND_URL}`
+      // console.log('origin', abc )
       const res = await fetch(gateway_url, {
         method: "POST",
+        body: JSON.stringify(json),
         headers: {
           // TODO
           'Origin' : `${process.env.REACT_APP_FRONTEND_URL}`,

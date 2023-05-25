@@ -10,7 +10,7 @@ def lambda_handler(event:, context:)
     { 
       headers: {
         "Access-Control-Allow-Headers": "*, Authorization",
-        "Access-Control-Allow-Origin": "https://3000-lhviet204-awsbootcampcr-bgsgpelsdm8.ws-us98.gitpod.io",
+        "Access-Control-Allow-Origin": "",
         "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
       },
       statusCode: 200
@@ -38,7 +38,7 @@ def lambda_handler(event:, context:)
     { 
       headers: {
         "Access-Control-Allow-Headers": "*, Authorization",
-        "Access-Control-Allow-Origin": "https://3000-lhviet204-awsbootcampcr-bgsgpelsdm8.ws-us98.gitpod.io",
+        "Access-Control-Allow-Origin": "",
         "Access-Control-Allow-Methods": "OPTIONS,GET,POST"
       },
       statusCode: 200, 

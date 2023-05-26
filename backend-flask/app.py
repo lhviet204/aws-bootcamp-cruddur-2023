@@ -153,21 +153,20 @@ def data_messages(message_group_uuid):
 @app.route('/api/messages', methods=['POST','OPTIONS'])
 @cross_origin()
 def data_create_message():
+  message_group_uuid   = request.json.get('message_group_uuid',None)
+  user_receiver_handle = request.json.get('handle',None)
+  message = request.json['message']
   access_token = extract_access_token(request.headers)
   try:
     claims = cognito_jwt_token.verify(access_token)
     # authenicatied request
-    app.logger.debug('authenicated')
+    app.logger.debug("authenicated")
+    app.logger.debug(claims)
     cognito_user_id = claims['sub']
-    message = request.json['message']
-
-    message_group_uuid   = request.json.get('message_group_uuid',None)
-    user_receiver_handle = request.json.get('user_receiver_handle',None)
-
     if message_group_uuid == None:
       # Create for the first time
       model = CreateMessage.run(
-        mode='create',
+        mode="create",
         message=message,
         cognito_user_id=cognito_user_id,
         user_receiver_handle=user_receiver_handle
@@ -175,12 +174,11 @@ def data_create_message():
     else:
       # Push onto existing Message Group
       model = CreateMessage.run(
-        mode='update',
+        mode="update",
         message=message,
         message_group_uuid=message_group_uuid,
         cognito_user_id=cognito_user_id
       )
-
     if model['errors'] is not None:
       return model['errors'], 422
     else:
@@ -188,38 +186,39 @@ def data_create_message():
   except TokenVerifyError as e:
     # unauthenicatied request
     app.logger.debug(e)
-    app.logger.debug('unauthenicated')
     return {}, 401
+
+
 
 @app.route('/api/activities/home', methods=['GET'])
 @cross_origin()
 # @xray_recorder.capture('activities_home')
 def data_home():
-  # # data = HomeActivities.run(LOGGER)
-  # access_token = extract_access_token(request.headers)
-  # try:
-  #   claims = cognito_jwt_token.verify(access_token)
-  #   # authenicatied request
-  #   app.logger.debug('authenicated')
-  #   app.logger.debug(claims)
-  #   app.logger.debug(claims['username'])
-  #   data = HomeActivities.run(cognito_user_id=claims['username'])
-  # except TokenVerifyError as e:
-  #   # unauthenicatied request
-  #   app.logger.debug(e)
-  #   app.logger.debug('unauthenicated')
-  #   data = HomeActivities.run()
-  # return data, 200
-
-  ## For aws-jwt-verify
-  app.logger.debug(request.headers)
-  cognito_usr = request.headers.get('x-cognito-username', None)
-  if cognito_usr is not None:
-    app.logger.debug(f'Authenticated request from {cognito_usr}')
-    data = HomeActivities.run(cognito_user_id=cognito_usr)
-  else:
+  # data = HomeActivities.run(LOGGER)
+  access_token = extract_access_token(request.headers)
+  try:
+    claims = cognito_jwt_token.verify(access_token)
+    # authenicatied request
+    app.logger.debug('authenicated')
+    app.logger.debug(claims)
+    app.logger.debug(claims['username'])
+    data = HomeActivities.run(cognito_user_id=claims['username'])
+  except TokenVerifyError as e:
+    # unauthenicatied request
+    app.logger.debug(e)
+    app.logger.debug('unauthenicated')
     data = HomeActivities.run()
-  return data, 200  
+  return data, 200
+
+  # ## For aws-jwt-verify
+  # app.logger.debug(request.headers)
+  # cognito_usr = request.headers.get('x-cognito-username', None)
+  # if cognito_usr is not None:
+  #   app.logger.debug(f'Authenticated request from {cognito_usr}')
+  #   data = HomeActivities.run(cognito_user_id=cognito_usr)
+  # else:
+  #   data = HomeActivities.run()
+  # return data, 200  
 
 @app.route('/api/activities/notifications', methods=['GET'])
 def data_notifications():

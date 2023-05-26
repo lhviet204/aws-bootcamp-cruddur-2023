@@ -1,24 +1,24 @@
 import './ProfileForm.css';
 import React from "react";
 import process from 'process';
-import {getAccessToken} from 'lib/CheckAuth';
+import { getAccessToken } from 'lib/CheckAuth';
 
 export default function ProfileForm(props) {
   const [bio, setBio] = React.useState('');
   const [displayName, setDisplayName] = React.useState('');
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     setBio(props.profile.bio || '');
     setDisplayName(props.profile.display_name);
   }, [props.profile])
 
-  const s3uploadkey = async (extension)=> {
-    console.log('ext',extension)
+  const s3uploadkey = async (extension) => {
+    console.log('ext', extension)
     try {
       const gateway_url = `${process.env.REACT_APP_API_GATEWAY_ENDPOINT_URL}/avatars/key_upload`
       await getAccessToken()
       const access_token = localStorage.getItem("access_token")
-      console.log('token',access_token)
+      console.log('token', access_token)
       const json = {
         extension: extension
       }
@@ -28,12 +28,12 @@ export default function ProfileForm(props) {
         method: "POST",
         body: JSON.stringify(json),
         headers: {
-          'Origin' : `${process.env.REACT_APP_FRONTEND_URL}`,
+          'Origin': process.env.REACT_APP_FRONTEND_URL,
           'Authorization': `Bearer ${access_token}`,
           'Accept': 'application/json',
           'Content-Type': 'application/json'
-      }
-    })
+        }
+      })
       let data = await res.json();
       if (res.status === 200) {
         return data.url
@@ -44,18 +44,18 @@ export default function ProfileForm(props) {
       console.log(err);
     }
   }
-  const s3upload = async (event)=> {
-    console.log('event',event)
+  const s3upload = async (event) => {
+    console.log('event', event)
     const file = event.target.files[0]
     const filename = file.name
     const size = file.size
     const type = file.type
     const preview_image_url = URL.createObjectURL(file)
-    console.log(filename,size,type)
+    console.log(filename, size, type)
     const fileparts = filename.split('.')
-    const extension = fileparts[fileparts.length-1]
+    const extension = fileparts[fileparts.length - 1]
     const presignedurl = await s3uploadkey(extension)
-    console.log('Presigned URL is ',presignedurl)
+    console.log('Presigned URL is ', presignedurl)
 
     try {
       console.log('s3upload')
@@ -64,8 +64,10 @@ export default function ProfileForm(props) {
         body: file,
         headers: {
           'Content-Type': type
-      }})
+        }
+      })
       if (res.status === 200) {
+        console.log("Upload OK")
       } else {
         console.log(res)
       }
@@ -73,7 +75,7 @@ export default function ProfileForm(props) {
       console.log(err);
     }
   }
-  
+
   const onsubmit = async (event) => {
     event.preventDefault();
     try {
@@ -113,7 +115,7 @@ export default function ProfileForm(props) {
     setDisplayName(event.target.value);
   }
 
-  const close = (event)=> {
+  const close = (event) => {
     if (event.target.classList.contains("profile_popup")) {
       props.setPopped(false)
     }
@@ -122,25 +124,25 @@ export default function ProfileForm(props) {
   if (props.popped === true) {
     return (
       <div className="popup_form_wrap profile_popup" onClick={close}>
-        <form 
+        <form
           className='profile_form popup_form'
           onSubmit={onsubmit}
         >
-          <div class="popup_heading">
-            <div class="popup_title">Edit Profile</div>
+          <div className="popup_heading">
+            <div className="popup_title">Edit Profile</div>
             <div className='submit'>
               <button type='submit'>Save</button>
             </div>
           </div>
           <div className="popup_content">
-           <input type="file" name="avatarupload" onChange={s3upload} />
+            <input type="file" name="avatarupload" onChange={s3upload} />
             <div className="field display_name">
               <label>Display Name</label>
               <input
                 type="text"
                 placeholder="Display Name"
                 value={displayName}
-                onChange={display_name_onchange} 
+                onChange={display_name_onchange}
               />
             </div>
             <div className="field bio">
@@ -148,7 +150,7 @@ export default function ProfileForm(props) {
               <textarea
                 placeholder="Bio"
                 value={bio}
-                onChange={bio_onchange} 
+                onChange={bio_onchange}
               />
             </div>
           </div>

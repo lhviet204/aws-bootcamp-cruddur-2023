@@ -183,6 +183,12 @@ Tips:
 - Commit [1d26acf](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/commit/1d26acf5fef57905e8c1aa231279abbe89ad3284)
 ![](./assets/week2/)
 
+### Next steps 26 May
+- Open before trying to update all the orgin, should find a script to update all of the lambda .... for orgin things.
+- To open new workspace
+- Setting up all the env again
+- db setup, local env, rds rules, origin?
+
 
 ### Raw note:
 implement avatar uploading

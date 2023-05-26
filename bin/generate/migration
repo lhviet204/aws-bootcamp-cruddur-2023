@@ -17,7 +17,14 @@ filename = f"{timestamp}_{name}.py"
 klass = name.replace('_', ' ').title().replace(' ','')
 
 file_content = f"""
+import os, sys
+
+current_path = os.path.dirname(os.path.abspath(__file__))
+parent_path = os.path.abspath(os.path.join(current_path, '..', '..','backend-flask'))
+sys.path.append(parent_path)
+
 from lib.db import db
+
 
 class {klass}Migration:
   def migrate_sql():

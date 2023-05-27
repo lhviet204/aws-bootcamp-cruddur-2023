@@ -131,6 +131,7 @@ def data_message_groups():
 @app.route('/api/messages/<string:message_group_uuid>', methods=['GET'])
 def data_messages(message_group_uuid):
   access_token = extract_access_token(request.headers)
+  print(access_token)
   try:
     claims = cognito_jwt_token.verify(access_token)
     # authenicatied request
@@ -155,6 +156,7 @@ def data_messages(message_group_uuid):
 def data_create_message():
   message_group_uuid   = request.json.get('message_group_uuid',None)
   user_receiver_handle = request.json.get('handle',None)
+  user_receiver_handle = request.json.get('user_receiver_handle',None)
   message = request.json['message']
   access_token = extract_access_token(request.headers)
   try:

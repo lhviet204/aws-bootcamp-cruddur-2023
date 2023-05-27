@@ -21,9 +21,8 @@ export default function HomeFeedPage() {
     try {
       const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/activities/home`
       //const backend_url = `${process.env.REACT_APP_ENVOY_URL}/api/activities/home`
-      // await getAccessToken()
-      // const access_token = localStorage.getItem("access_token")
-      const access_token = await getAccessToken();
+      await getAccessToken()
+      const access_token = localStorage.getItem("access_token")
       const res = await fetch(backend_url, {
         headers: {
           Authorization: `Bearer ${access_token}`
@@ -55,6 +54,7 @@ export default function HomeFeedPage() {
       <DesktopNavigation user={user} active={'home'} setPopped={setPopped} />
       <div className='content'>
         <ActivityForm  
+          user_handle={user}
           popped={popped}
           setPopped={setPopped} 
           setActivities={setActivities} 

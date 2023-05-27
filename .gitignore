@@ -1,6 +1,7 @@
 tmp/*
 .DS_Store
 docker/**/*
+docker/*
 frontend-react-js/build/*
 node_modules
 *.env

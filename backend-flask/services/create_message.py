@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta, timezone
-
 from lib.db import db
 from lib.ddb import Ddb
 
@@ -21,18 +20,16 @@ class CreateMessage:
 
     if (mode == "create"):
       if user_receiver_handle == None or len(user_receiver_handle) < 1:
-        model['errors'] = ['user_reciever_handle_blank']
+        model['errors'] = ['user_receiver_handle_blank']
 
     if message == None or len(message) < 1:
-      model['errors'] = ['message_blank'] 
+      model['errors'] = ['message_blank']
     elif len(message) > 1024:
-      model['errors'] = ['message_exceed_max_chars'] 
+      model['errors'] = ['message_exceed_max_chars']
 
     if model['errors']:
       # return what we provided
       model['data'] = {
-        'display_name': 'Andrew Brown',
-        'handle':  user_sender_handle,
         'message': message
       }
     else:
@@ -49,8 +46,8 @@ class CreateMessage:
       print("USERS =-=-=-=-==")
       print(users)
 
-      my_user    = next((item for item in users if item["kind"] == 'sender'), None)
-      other_user = next((item for item in users if item["kind"] == 'recv')  , None)
+      my_user = next((item for item in users if item["kind"] == 'sender'), None)
+      other_user = next((item for item in users if item["kind"] == 'recv'), None)
 
       print("USERS=[my-user]==")
       print(my_user)

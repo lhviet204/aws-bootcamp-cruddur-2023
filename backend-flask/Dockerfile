@@ -1,4 +1,4 @@
-dockerfile# Stage 1: Prepare the app source code
+# Stage 1: Prepare the app source code
 FROM python:3.10-slim-buster AS builder
 
 WORKDIR /backend-flask

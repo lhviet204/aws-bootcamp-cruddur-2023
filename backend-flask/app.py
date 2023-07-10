@@ -309,7 +309,7 @@ def data_update_profile():
 # For Health Check
 @app.route('/api/health-check')
 def health_check():
-  return {'Success': True}, 200
+  return {'Success': True, 'ver': 1.0 }, 200
 
 # # For RollBar endpoint
 # @app.route('/rollbar/test')

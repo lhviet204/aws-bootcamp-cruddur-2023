@@ -4,9 +4,9 @@ import { resolvePath } from 'react-router-dom';
 export async function getAccessToken(){
   Auth.currentSession()
   .then((cognito_user_session) => {
-    // const access_token = cognito_user_session.accessToken.jwtToken
-    // localStorage.setItem("access_token", access_token)
-    return cognito_user_session.getAccessToken().getJwtToken();
+    const access_token = cognito_user_session.accessToken.jwtToken
+    localStorage.setItem("access_token", access_token)
+    // return cognito_user_session.getAccessToken().getJwtToken();
   })
   .catch((err) => console.log(err));
 }

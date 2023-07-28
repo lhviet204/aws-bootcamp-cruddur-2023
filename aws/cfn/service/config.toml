@@ -1,0 +1,9 @@
+[deploy]
+bucket = 'cfn-artifacts-lhviet204'
+region = 'us-east-1'
+stack_name = 'CrdSrvBackendFlask'
+
+[parameters]
+EnvFrontendUrl = 'https://yetanothercruddur.live'
+EnvBackendUrl = 'https://api.yetanothercruddur.live'
+DDBMessageTable = '//TODO'

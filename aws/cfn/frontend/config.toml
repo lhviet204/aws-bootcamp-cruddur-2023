@@ -1,0 +1,10 @@
+[deploy]
+bucket = 'cfn-artifacts-lhviet204'
+region = 'us-east-1'
+stack_name = 'CrdFrontend'
+
+
+[parameters]
+CertificateArn = ''
+WwwBucketName = 'www.yetanothercruddur.live'
+RootBucketName = 'yetanothercruddur.live'

@@ -1,8 +1,9 @@
 #! /usr/bin/env bash
 set -e # stop the execution of the script if it fails
 
+# Steps will be : Running build and package at aws-bootcamp to have PACKAGED_TEMPLATE_PATH correct patch for deploy script.
 PACKAGED_TEMPLATE_PATH="/workspace/aws-bootcamp-cruddur-2023/.aws-sam/build/packaged.yaml"
-CONFIG_PATH="/workspace/aws-bootcamp-cruddur-2023/aws/ddb/config.toml"
+CONFIG_PATH="/workspace/aws-bootcamp-cruddur-2023/ddb/config.toml"
 
 echo "=== deploy ==="
 # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-deploy.html

@@ -15,7 +15,14 @@ tasks:
       pip install cfn-lint
       cargo install cfn-guard
       gem install cfn-toml
-  
+  - name: aws-sam
+    init: |
+      cd /workspace
+      wget https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip
+      unzip aws-sam-cli-linux-x86_64.zip -d sam-installation
+      sudo ./sam-installation/install
+      rm -rf ./sam-installation
+      cd $THEIA_WORKSPACE_ROOT
   - name: postgres
     before: |
       curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg

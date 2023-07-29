@@ -1,9 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
+
 Description: | 
   The stack consisit of AWS resources
   - DynamoDB Table
   - DynamoDB Stream
+
 Parameters:
   PythonRuntime:
     Type: String
@@ -17,6 +19,7 @@ Parameters:
   DeletionProtectionEnabled:
     Type: String
     Default: false
+
 Resources:
   DynamoDBTable:
     # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dynamodb-table.html
@@ -58,7 +61,7 @@ Resources:
     # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: cruddur-messaging-stream
+      CodeUri: .
       PackageType: Zip
       Handler: lambda_handler
       Runtime: !Ref PythonRuntime
@@ -128,11 +131,11 @@ Resources:
                   - "dynamodb:ListStreams"
                 Resource: "*"
               # Add permission to update the DDB stream  
-              - Effect: "Allow"
-                Action:
-                  - "dynamodb:PutItem"
-                  - "dynamodb:DeleteItem"
-                  - "dynamodb:Query"
-                Resource:
-                  - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/cruddur-messages"
-                  - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/cruddur-messages/index/message-group-sk-index"
+              # - Effect: "Allow"
+              #   Action:
+              #     - "dynamodb:PutItem"
+              #     - "dynamodb:DeleteItem"
+              #     - "dynamodb:Query"
+              #   Resource:
+              #     - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/cruddur-messages"
+              #     - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/cruddur-messages/index/message-group-sk-index"

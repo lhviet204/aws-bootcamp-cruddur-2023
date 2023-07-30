@@ -2,12 +2,12 @@
 
 - [Summary](#summary)
 - [Homework](#homework)
-
+- [Implementation](#implementation)
 ## Summary
-"Those weeks" I has learnt and gained many expereinces from various areas, especially end-to-end progress to publish the mordern applications consisting of front and back end into AWS environment with in-use AWS services like Route53, ALB, Target Group, ECS, ECR, RDS, DynamoDB, Cloudwatch logs, IAM roles ... The app is running normanlly on my own domain.
+"Those weeks" I has learnt and gained many experiences from various areas, especially end-to-end progress to publish the modern applications consisting of front and back end into AWS environment with in-use AWS services like Route53, ALB, Target Group, ECS, ECR, RDS, DynamoDB, Cloudwatch logs, IAM roles ... The app is running normally on my own domain.
 
 High level steps consist of
-- create ECR for python, backend, frontend repository
+- Create ECR for python, backend, frontend repository
 - Build and Push new images
 - Create ECS and Register task-definitions, services, security groups for ECS with correct IAM roles for service execution/task roles.
 - Create Route53 public hosted-zones
@@ -16,7 +16,19 @@ High level steps consist of
 - Create A records for FE and BE pointing to ALB
 - Revise service and task definition with ALB supporting
 
-## Homework
+## Implementation
+- Health check request returend OK status by IP Address.
 
-- Commit [1d26acf](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/commit/1d26acf5fef57905e8c1aa231279abbe89ad3284)
-![](./assets/week2/)
+![](./assets/week67/week6-7-homework-health-check-successfully-from-BE.png)
+
+- Health check request returned OK status with domain name.
+
+![](./assets/week67/week6-7-Homework-Cruddur-BE-withALB.png)
+
+- Frontend service was implemented successfully.
+
+![](./assets/week67/week6-7-Homework-Cruddur-FE-withALB.png)
+
+- Backend service was implemented successfully.
+
+![](./assets/week67/week6-7-Homework-Cruddur-on-AWS-cruddur-post.png)

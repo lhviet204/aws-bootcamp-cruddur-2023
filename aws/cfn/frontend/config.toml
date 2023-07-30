@@ -1,0 +1,10 @@
+[deploy]
+bucket = 'cfn-artifacts-lhviet204'
+region = 'us-east-1'
+stack_name = 'CrdFrontend'
+
+
+[parameters]
+CertificateArn = 'arn:aws:acm:us-east-1:185967683222:certificate/0d637292-0115-4a98-8465-c07455960801'
+WwwBucketName = 'www.yetanothercruddur.live'
+RootBucketName = 'yetanothercruddur.live'

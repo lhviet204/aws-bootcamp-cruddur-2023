@@ -1,0 +1,10 @@
+[deploy]
+bucket = 'cfn-artifacts-lhviet204'
+region = 'us-east-1'
+stack_name = 'CrdDb'
+
+
+[parameters]
+NetworkingStack = 'CrdNet'
+ClusterStack = 'CrdCluster'
+MasterUsername = 'crdroot'

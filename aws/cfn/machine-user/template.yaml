@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: | 
+  This stack create technical account/user for DynamoDB Full Access
+
+Resources:
+  CruddurMachineUser:
+    Type: 'AWS::IAM::User'
+    Properties: 
+      UserName: 'cruddur_machine_user'
+  DynamoDBFullAccessPolicy: 
+    Type: 'AWS::IAM::Policy'
+    Properties: 
+      PolicyName: 'DynamoDBFullAccessPolicy'
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement: 
+          - Effect: Allow
+            Action: 
+              - dynamodb:PutItem
+              - dynamodb:GetItem
+              - dynamodb:Scan
+              - dynamodb:Query
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:BatchWriteItem
+            Resource: '*'
+      Users:
+        - !Ref CruddurMachineUser

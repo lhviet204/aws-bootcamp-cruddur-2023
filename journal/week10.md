@@ -63,9 +63,18 @@ E. Check the security groups between ALB, ECS. LambdaPostConformation and RDS
 ## Implementation
 
 Implementation of Crddur on CFN stack
+
+Profile Form and Crud Activity worked properly.
 ![](./assets/week10/week10&WeekX-profile-page.png)
 ![](./assets/week10/week10&WeekX-CrudPost-create-activities.png)
+
+Message function works properly
 ![](./assets/week10/week10&WeekX-message-function.png)
 ![](./assets/week10/week10&WeekX-message-function-2.png)
 ![](./assets/week10/week10&WeekX-message-function-3.png)
-![]()
+
+New account can be created and post crud
+![](./assets/week10/week10&weekX-post-confirmation-sign-up-3.png)
+
+Pipeline executed successully after megred main to prod.
+![](./assets/week10/week10&weekX-CICD-deploy.png)

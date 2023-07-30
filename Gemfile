@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 
 gem 'rake'
+gem 'cfn-toml'
 gem 'aws_s3_website_sync', tag: '1.0.1'
 gem 'dotenv', groups: [:development, :test]

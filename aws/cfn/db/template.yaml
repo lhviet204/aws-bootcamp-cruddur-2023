@@ -98,8 +98,8 @@ Resources:
       VPCSecurityGroups:
         - !GetAtt RDSPostgresSG.GroupId
 
-Outputs:
-  ServiceSecurityGroupId:
-   Value: !GetAtt ServiceSG.GroupId
-   Export:
-     Name: !Sub "${AWS::StackName}ServiceSecurityGroupId"
+# Outputs:
+#   ServiceSecurityGroupId:
+#    Value: !GetAtt ServiceSG.GroupId
+#    Export:
+#      Name: !Sub "${AWS::StackName}ServiceSecurityGroupId"

@@ -1,5 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: |
+  This stack consist of AWS resources
   - CloudFront Distribution
   - S3 Bucket for www.
   - S3 Bucket for naked domain

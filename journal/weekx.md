@@ -22,7 +22,7 @@ The steps are described in high level instruction
 ## Implementation
 After refactoring the code base, docker compose up to test all the functions of Cruddur to ensure it works properly.
 
-Be aware of inputting additional HTTP method at cors.py and users.py to let profileform working [c96b030](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/commit/c96b030beea455686d770367b5b661c4df648a3c) and ensure the origin ""Access-Control-Allow-Origin":" from ruby lambda CruddurAvatarUpload is correct with new gitpod env.
+Be aware of inputting additional HTTP method at cors.py and users.py to let profileform working [c96b030](https://github.com/lhviet204/aws-bootcamp-cruddur-2023/commit/c96b030beea455686d770367b5b661c4df648a3c) and ensure the origin ""Access-Control-Allow-Origin":" from ruby lambda CruddurAvatarUpload is correct with new gitpod env. Second is update the CORS policy of S3 to allow upload avatar from new FE instead of only gitpod env.
 
 Impelementation on gitpod env
 

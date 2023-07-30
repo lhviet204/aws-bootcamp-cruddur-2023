@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'erb'
+
+template = File.read 'erb/sync.env.erb'
+content = ERB.new(template).result(binding)
+# to ensure the desired file location
+filename = "/workspace/aws-bootcamp-cruddur-2023/sync.env"
+File.write(filename, content)

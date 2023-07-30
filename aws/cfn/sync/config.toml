@@ -6,4 +6,4 @@ stack_name = 'CrdSyncRole'
 [parameters]
 GitHubOrg = 'lhviet204'
 RepositoryName = 'aws-bootcamp-cruddur-2023'
-OIDCProviderArn = '//TODO'
+OIDCProviderArn = ''
